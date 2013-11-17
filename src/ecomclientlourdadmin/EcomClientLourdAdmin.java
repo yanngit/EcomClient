@@ -51,9 +51,9 @@ public class EcomClientLourdAdmin {
 
     static public void addCocktail() {
         CocktailEntity cocktail = new CocktailEntity();
-        cocktail.setName("Cocktail Jamaïca");
+        cocktail.setName("Cocktail Bresilian");
         cocktail.setPrice(new Float(2.5));
-        cocktail.setRecipe("Recette secrête de Mama Coffee...");
+        cocktail.setRecipe("Euh je sais plus ...");
         cocktail.setFlavor(CocktailFlavorEnum.FRUITY);
         cocktail.setPower(CocktailPowerEnum.SOFT);
         List<Deliverable> deliverables = new ArrayList<>();
@@ -67,10 +67,10 @@ public class EcomClientLourdAdmin {
     static public void addBeverage() {
         BeverageEntity b = new BeverageEntity();
         b.setAlcoholicDegree(99);
-        b.setName("Gnole de bach");
+        b.setName("Gnole de bach 2");
         b.setPrice(new Float(15));
         b.setCapacity(100);
-        b.setQuantity(5);
+        b.setQuantity(10);
         adminFacade.addBeverage(b);
         List<BeverageEntity> list = adminFacade.getAllBeverages();
         for (BeverageEntity dr : list) {
