@@ -40,7 +40,7 @@ public class EcomClientLourdAdmin {
             props.load(new FileInputStream("jndi.properties"));
             InitialContext ctx = new InitialContext(props);
             adminFacade = (AdminFacadeRemoteItf) ctx.lookup("java:global/Ecom/Ecom-ejb/AdminFacadeBean!session.interfaces.AdminFacadeRemoteItf");
-            EcomClientLourdAdmin.addCocktail();
+          //  EcomClientLourdAdmin.addCocktail();
           // EcomClientLourdAdmin.addAddress();
             EcomClientLourdAdmin.addOrder();
         } catch (IOException | NamingException ex) {
@@ -81,6 +81,12 @@ public class EcomClientLourdAdmin {
         OrderEntity o = new OrderEntity();
         o.setStatus(OrderStateEnum.SENT);
        // o.setAddresses(adminFacade.getAllAddresses());
+        List<AddressEntity> list = new ArrayList<>();
+        list.add(adminFacade.getAllAddresses().get(0));
+        o.setAddresses(list);
+        List<CocktailEntity> listC = new ArrayList<>();
+        listC.add(adminFacade.getAllCocktails().get(0));
+        o.setCocktails(listC);
         adminFacade.addOrder(o);
     }
     
