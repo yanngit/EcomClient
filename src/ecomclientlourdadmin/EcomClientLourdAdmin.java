@@ -4,8 +4,10 @@
  */
 package ecomclientlourdadmin;
 
+import entity.AddressEntity;
 import entity.BeverageEntity;
 import entity.CocktailEntity;
+import entity.OrderEntity;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ import javax.naming.NamingException;
 import pojo.CocktailFlavorEnum;
 import pojo.CocktailPowerEnum;
 import pojo.Deliverable;
+import pojo.OrderStateEnum;
 import session.interfaces.AdminFacadeRemoteItf;
 
 /**
@@ -38,6 +41,8 @@ public class EcomClientLourdAdmin {
             InitialContext ctx = new InitialContext(props);
             adminFacade = (AdminFacadeRemoteItf) ctx.lookup("java:global/Ecom/Ecom-ejb/AdminFacadeBean!session.interfaces.AdminFacadeRemoteItf");
             EcomClientLourdAdmin.addCocktail();
+          // EcomClientLourdAdmin.addAddress();
+            EcomClientLourdAdmin.addOrder();
         } catch (IOException | NamingException ex) {
             Logger.getLogger(EcomClientLourdAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -71,8 +76,23 @@ public class EcomClientLourdAdmin {
             System.out.println(dr.getName() + " : \n Degré d'alcool : " + dr.getAlcoholicDegree() + " \n Prix : " + dr.getPrice() + "€");
         }
     }
+    
+    static public void addOrder() {
+        OrderEntity o = new OrderEntity();
+        o.setStatus(OrderStateEnum.SENT);
+       // o.setAddresses(adminFacade.getAllAddresses());
+        adminFacade.addOrder(o);
+    }
+    
+    static public void addAddress() {
+       AddressEntity a = new AddressEntity();
+       a.setCity("Grenoble");
+        adminFacade.addAddress(a);
+         AddressEntity b = new AddressEntity();
+       b.setCity("Lyon");
+        adminFacade.addAddress(b);
+    }
+    
 }
-
-
 
 
