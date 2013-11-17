@@ -42,8 +42,8 @@ public class EcomClientLourdAdmin {
             adminFacade = (AdminFacadeRemoteItf) ctx.lookup("java:global/Ecom/Ecom-ejb/AdminFacadeBean!session.interfaces.AdminFacadeRemoteItf");
             EcomClientLourdAdmin.addBeverage();
             EcomClientLourdAdmin.addCocktail();
-            EcomClientLourdAdmin.addAddress();
-            EcomClientLourdAdmin.addOrder();
+            //EcomClientLourdAdmin.addAddress();
+           // EcomClientLourdAdmin.addOrder();
         } catch (IOException | NamingException ex) {
             Logger.getLogger(EcomClientLourdAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -51,7 +51,7 @@ public class EcomClientLourdAdmin {
 
     static public void addCocktail() {
         CocktailEntity cocktail = new CocktailEntity();
-        cocktail.setName("Cocktail Bresilian");
+        cocktail.setName("Cocktail Virgin cuba libre");
         cocktail.setPrice(new Float(2.5));
         cocktail.setRecipe("Euh je sais plus ...");
         cocktail.setFlavor(CocktailFlavorEnum.FRUITY);
@@ -66,11 +66,11 @@ public class EcomClientLourdAdmin {
 
     static public void addBeverage() {
         BeverageEntity b = new BeverageEntity();
-        b.setAlcoholicDegree(99);
-        b.setName("Gnole de bach 2");
-        b.setPrice(new Float(15));
+        b.setAlcoholicDegree(0);
+        b.setName("Coca");
+        b.setPrice(new Float(3));
         b.setCapacity(100);
-        b.setQuantity(10);
+        b.setQuantity(20);
         adminFacade.addBeverage(b);
         List<BeverageEntity> list = adminFacade.getAllBeverages();
         for (BeverageEntity dr : list) {
