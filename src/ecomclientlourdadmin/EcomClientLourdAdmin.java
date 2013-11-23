@@ -40,10 +40,10 @@ public class EcomClientLourdAdmin {
             props.load(new FileInputStream("jndi.properties"));
             InitialContext ctx = new InitialContext(props);
             adminFacade = (AdminFacadeRemoteItf) ctx.lookup("java:global/Ecom/Ecom-ejb/AdminFacadeBean!session.interfaces.AdminFacadeRemoteItf");
-            EcomClientLourdAdmin.addBeverage();
+           // EcomClientLourdAdmin.addBeverage();
             EcomClientLourdAdmin.addCocktail();
-            //EcomClientLourdAdmin.addAddress();
-           // EcomClientLourdAdmin.addOrder();
+           //EcomClientLourdAdmin.addAddress();
+            //EcomClientLourdAdmin.addOrder();
         } catch (IOException | NamingException ex) {
             Logger.getLogger(EcomClientLourdAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -51,11 +51,12 @@ public class EcomClientLourdAdmin {
 
     static public void addCocktail() {
         CocktailEntity cocktail = new CocktailEntity();
-        cocktail.setName("Cocktail Virgin cuba libre");
-        cocktail.setPrice(new Float(2.5));
+        cocktail.setName("911");
+        cocktail.setPrice(new Float(10));
         cocktail.setRecipe("Euh je sais plus ...");
         cocktail.setFlavor(CocktailFlavorEnum.FRUITY);
         cocktail.setPower(CocktailPowerEnum.SOFT);
+        cocktail.setPhotoURI("911.png");
         List<Deliverable> deliverables = new ArrayList<>();
         deliverables.add((Deliverable) adminFacade.getAllBeverages().get(0));
         cocktail.setDeliverables(deliverables);
