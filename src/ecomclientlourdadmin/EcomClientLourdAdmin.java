@@ -103,16 +103,11 @@ public class EcomClientLourdAdmin {
         adminFacade.addBeverage(b);
     }
     
-    static public void addOrder(List<AddressEntity> adresses, List<CocktailEntity> cocktails,OrderStateEnum state) {
+    static public void addOrder(List<AddressEntity> addresses, List<CocktailEntity> cocktails,OrderStateEnum state) {
         OrderEntity o = new OrderEntity();
-        o.setStatus(OrderStateEnum.SENT);
-       // o.setAddresses(adminFacade.getAllAddresses());
-        List<AddressEntity> list = new ArrayList<>();
-        list.add(adminFacade.getAllAddresses().get(0));
-        o.setAddresses(list);
-        List<CocktailEntity> listC = new ArrayList<>();
-        listC.add(adminFacade.getAllCocktails().get(0));
-        o.setCocktails(listC);
+        o.setStatus(state);
+        o.setAddresses(addresses);
+        o.setCocktails(cocktails);
         adminFacade.addOrder(o);
     }
     
