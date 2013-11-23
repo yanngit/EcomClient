@@ -54,18 +54,28 @@ public class EcomClientLourdAdmin {
             deliverables.clear();
             deliverables.add((Deliverable) adminFacade.getAllBeverages().get(3));
             deliverables.add((Deliverable) adminFacade.getAllBeverages().get(2));
-            EcomClientLourdAdmin.addCocktail("orange coca (lol)",new Float(8), "Inconnu",CocktailFlavorEnum.FRUITY,CocktailPowerEnum.SOFT,"911.png",deliverables);
+            EcomClientLourdAdmin.addCocktail("orange coca (lol)",new Float(8), "Inconnu",CocktailFlavorEnum.FRUITY,CocktailPowerEnum.SOFT,"77e_ciel.png",deliverables);
+            EcomClientLourdAdmin.addCocktail("coca orange (lol)",new Float(8), "Inconnu",CocktailFlavorEnum.FRUITY,CocktailPowerEnum.SOFT,"911.png",deliverables);
             deliverables.clear();
             deliverables.add((Deliverable) adminFacade.getAllBeverages().get(0));
             deliverables.add((Deliverable) adminFacade.getAllBeverages().get(3));
-            EcomClientLourdAdmin.addCocktail("whisky orange",new Float(8), "Inconnu",CocktailFlavorEnum.FRUITY,CocktailPowerEnum.SOFT,"911.png",deliverables);
+            EcomClientLourdAdmin.addCocktail("whisky orange",new Float(8), "Inconnu",CocktailFlavorEnum.FRUITY,CocktailPowerEnum.SOFT,"americano.png",deliverables);
             deliverables.clear();
             deliverables.add((Deliverable) adminFacade.getAllBeverages().get(1));
             deliverables.add((Deliverable) adminFacade.getAllBeverages().get(2));
-            EcomClientLourdAdmin.addCocktail("vodka coca",new Float(8), "Inconnu",CocktailFlavorEnum.FRUITY,CocktailPowerEnum.SOFT,"911.png",deliverables);
-            /*Adding the rest ... */
-            //EcomClientLourdAdmin.addAddress();
-            //EcomClientLourdAdmin.addOrder();
+            EcomClientLourdAdmin.addCocktail("vodka coca",new Float(8), "Inconnu",CocktailFlavorEnum.FRUITY,CocktailPowerEnum.SOFT,"amarante.png",deliverables);
+            /*Adding addresses */
+             EcomClientLourdAdmin.addAddress();
+             /*Adding orders*/
+            List<AddressEntity> addresses= new ArrayList<>();
+            addresses.add((AddressEntity)adminFacade.getAllAddresses().get(0));
+            List<CocktailEntity> cocktails= new ArrayList<>();
+            cocktails.add((CocktailEntity)adminFacade.getAllCocktails().get(0));
+            EcomClientLourdAdmin.addOrder(addresses,cocktails,OrderStateEnum.SENT);
+            cocktails.add((CocktailEntity)adminFacade.getAllCocktails().get(1));
+            EcomClientLourdAdmin.addOrder(addresses,cocktails,OrderStateEnum.SENT);
+            cocktails.add((CocktailEntity)adminFacade.getAllCocktails().get(2));
+            EcomClientLourdAdmin.addOrder(addresses,cocktails,OrderStateEnum.SENT);
         } catch (IOException | NamingException ex) {
             Logger.getLogger(EcomClientLourdAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -93,7 +103,7 @@ public class EcomClientLourdAdmin {
         adminFacade.addBeverage(b);
     }
     
-    static public void addOrder() {
+    static public void addOrder(List<AddressEntity> adresses, List<CocktailEntity> cocktails,OrderStateEnum state) {
         OrderEntity o = new OrderEntity();
         o.setStatus(OrderStateEnum.SENT);
        // o.setAddresses(adminFacade.getAllAddresses());
