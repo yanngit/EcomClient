@@ -37,6 +37,7 @@ public class EcomClientLourdAdmin {
             props.load(new FileInputStream("jndi.properties"));
             InitialContext ctx = new InitialContext(props);
             adminFacade = (AdminFacadeRemoteItf) ctx.lookup("java:global/Ecom/Ecom-ejb/AdminFacadeBean!session.interfaces.AdminFacadeRemoteItf");
+            EcomClientLourdAdmin.addBeverage();
             EcomClientLourdAdmin.addCocktail();
         } catch (IOException | NamingException ex) {
             Logger.getLogger(EcomClientLourdAdmin.class.getName()).log(Level.SEVERE, null, ex);
