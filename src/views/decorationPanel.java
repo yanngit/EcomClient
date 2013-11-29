@@ -217,10 +217,13 @@ public class decorationPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_formComponentAdded
-        List<DecorationEntity> decos = TchinTchinAdminFrame.adminFacade.getAllDecorations();
-        for (int i = 0; i < decos.size(); i++) {
-            DecorationEntity entity = decos.get(i);
-            addDecoToTable(entity);
+        List<DecorationEntity> decos;
+        decos = TchinTchinAdminFrame.adminFacade.getAllDecorations();
+        if (decos != null) {
+            for (int i = 0; i < decos.size(); i++) {
+                DecorationEntity entity = decos.get(i);
+                addDecoToTable(entity);
+            }
         }
     }//GEN-LAST:event_formComponentAdded
 

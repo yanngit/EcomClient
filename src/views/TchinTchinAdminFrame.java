@@ -45,8 +45,13 @@ public class TchinTchinAdminFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        deliverablePanel1 = new views.deliverablePanel();
+        cocktailsPanel1 = new views.cocktailsPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTabbedPane1.addTab("Livrables", deliverablePanel1);
+        jTabbedPane1.addTab("Cocktails", cocktailsPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,6 +105,8 @@ public class TchinTchinAdminFrame extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private views.cocktailsPanel cocktailsPanel1;
+    private views.deliverablePanel deliverablePanel1;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
     static protected AdminFacadeRemoteItf adminFacade;

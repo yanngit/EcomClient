@@ -4,18 +4,24 @@
  */
 package views;
 
-import com.google.common.base.Charsets;
+import entity.BeverageEntity;
 import entity.CocktailEntity;
 import entity.DecorationEntity;
+import java.io.UnsupportedEncodingException;
+import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import pojo.CocktailFlavorEnum;
 import pojo.CocktailPowerEnum;
 import pojo.Deliverable;
-import sun.nio.cs.US_ASCII;
 
 /**
  *
@@ -63,10 +69,17 @@ public class cocktailsPanel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         availableDelivrablesList = new javax.swing.JList();
-        removeButton = new javax.swing.JButton();
-        addButton = new javax.swing.JButton();
+        removeDeliverableButton = new javax.swing.JButton();
+        addDeliverableButton = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         cocktailDelivrablesList = new javax.swing.JList();
+        jSeparator2 = new javax.swing.JSeparator();
+
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jTable1.setAutoCreateRowSorter(true);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -110,14 +123,9 @@ public class cocktailsPanel extends javax.swing.JPanel {
             }
         });
 
-        cocktailNameField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                cocktailFormFocusLost(evt);
-            }
-        });
-        cocktailNameField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                cocktailNameFieldKeyTyped(evt);
+        cocktailNameField.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                cocktailNameFieldCaretUpdate(evt);
             }
         });
 
@@ -141,7 +149,6 @@ public class cocktailsPanel extends javax.swing.JPanel {
 
         jLabel3.setText("img/");
 
-        cocktailPhotoField.setText("jTextField1");
         cocktailPhotoField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 cocktailFormFocusLost(evt);
@@ -189,8 +196,13 @@ public class cocktailsPanel extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         jPanel2.add(jScrollPane5, gridBagConstraints);
 
-        removeButton.setText("<<");
-        removeButton.addFocusListener(new java.awt.event.FocusAdapter() {
+        removeDeliverableButton.setText("<<");
+        removeDeliverableButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeDeliverableButtonActionPerformed(evt);
+            }
+        });
+        removeDeliverableButton.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 cocktailFormFocusLost(evt);
             }
@@ -198,15 +210,15 @@ public class cocktailsPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
-        jPanel2.add(removeButton, gridBagConstraints);
+        jPanel2.add(removeDeliverableButton, gridBagConstraints);
 
-        addButton.setText(">>");
-        addButton.addActionListener(new java.awt.event.ActionListener() {
+        addDeliverableButton.setText(">>");
+        addDeliverableButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButtonActionPerformed(evt);
+                addDeliverableButtonActionPerformed(evt);
             }
         });
-        addButton.addFocusListener(new java.awt.event.FocusAdapter() {
+        addDeliverableButton.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 cocktailFormFocusLost(evt);
             }
@@ -214,7 +226,7 @@ public class cocktailsPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
-        jPanel2.add(addButton, gridBagConstraints);
+        jPanel2.add(addDeliverableButton, gridBagConstraints);
 
         cocktailDelivrablesList.setMaximumSize(new java.awt.Dimension(50, 85));
         cocktailDelivrablesList.setMinimumSize(new java.awt.Dimension(50, 85));
@@ -262,6 +274,9 @@ public class cocktailsPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jSeparator2)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(deleteButton)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane3)
@@ -292,7 +307,9 @@ public class cocktailsPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(validateButton)
                     .addComponent(cancelButton)
@@ -310,19 +327,24 @@ public class cocktailsPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE))
+                .addComponent(jScrollPane2))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(jScrollPane2)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addButtonActionPerformed
+    private void addDeliverableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDeliverableButtonActionPerformed
+        DefaultListModel availibleListModel = (DefaultListModel) availableDelivrablesList.getModel();
+        DefaultListModel listModel = (DefaultListModel) cocktailDelivrablesList.getModel();
+
+        Deliverable deliverable = (Deliverable) availableDelivrablesList.getSelectedValue();
+        listModel.addElement(deliverable);
+        availibleListModel.removeElement(deliverable);
+    }//GEN-LAST:event_addDeliverableButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         CocktailEntity entity = new CocktailEntity();
@@ -430,11 +452,51 @@ public class cocktailsPanel extends javax.swing.JPanel {
         this.cancelButtonActionPerformed(evt);
     }//GEN-LAST:event_validateButtonActionPerformed
 
-    private void cocktailNameFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cocktailNameFieldKeyTyped
-        cocktailPhotoField.setText(new String(cocktailNameField.getText().replace(' ', '_').getBytes(Charsets.US_ASCII)) + ".png");
-    }//GEN-LAST:event_cocktailNameFieldKeyTyped
+    private void removeDeliverableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeDeliverableButtonActionPerformed
+        DefaultListModel availibleListModel = (DefaultListModel) availableDelivrablesList.getModel();
+        DefaultListModel listModel = (DefaultListModel) cocktailDelivrablesList.getModel();
+
+        Deliverable deliverable = (Deliverable) cocktailDelivrablesList.getSelectedValue();
+        availibleListModel.addElement(deliverable);
+        listModel.removeElement(deliverable);
+    }//GEN-LAST:event_removeDeliverableButtonActionPerformed
+
+    private void cocktailNameFieldCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_cocktailNameFieldCaretUpdate
+        String photo;
+        /* Remove spaces */
+        photo = cocktailNameField.getText().replace(' ', '_');
+        /* Remove accents */
+        photo = Normalizer.normalize(photo, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
+        cocktailPhotoField.setText(photo + ".png");
+    }//GEN-LAST:event_cocktailNameFieldCaretUpdate
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        /* Display existing Cocktails */
+        Vector<CocktailEntity> cocktails;
+        cocktails = (Vector<CocktailEntity>) TchinTchinAdminFrame.adminFacade.getAllCocktails();
+        for (int i = 0; i < cocktails.size(); i++) {
+            addCocktailToTable(cocktails.get(i));
+        }
+
+        DefaultListModel<Object> listModel;
+        listModel = (DefaultListModel<Object>) availableDelivrablesList.getModel();
+        /* Display available Deliverable */
+        /**
+         * TODO : Separate the two lists
+         */
+        ArrayList<BeverageEntity> beverages;
+        beverages = (ArrayList<BeverageEntity>) TchinTchinAdminFrame.adminFacade.getAllBeverages();
+        for (int i = 0; i < beverages.size(); i++) {
+            listModel.addElement(beverages.get(i));
+        }
+        ArrayList<DecorationEntity> decos;
+        decos = (ArrayList<DecorationEntity>) TchinTchinAdminFrame.adminFacade.getAllDecorations();
+        for (int i = 0; i < decos.size(); i++) {
+            listModel.addElement(decos.get(i));
+        }
+    }//GEN-LAST:event_formComponentShown
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addButton;
+    private javax.swing.JButton addDeliverableButton;
     private javax.swing.JList availableDelivrablesList;
     private javax.swing.JButton cancelButton;
     private javax.swing.JList cocktailDelivrablesList;
@@ -458,8 +520,9 @@ public class cocktailsPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JButton removeButton;
+    private javax.swing.JButton removeDeliverableButton;
     private javax.swing.JButton validateButton;
     // End of variables declaration//GEN-END:variables
     private Long cocktailID;

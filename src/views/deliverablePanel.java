@@ -26,7 +26,7 @@ public class deliverablePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        decorationPanel1 = new views.decorationPanel();
+        decorationPanel2 = new views.decorationPanel();
         jLabel1 = new javax.swing.JLabel();
         deliverablesCombo = new javax.swing.JComboBox();
         contentPanel = new javax.swing.JPanel();
@@ -76,7 +76,7 @@ public class deliverablePanel extends javax.swing.JPanel {
                 this.contentPanel.add(beveragePanel1);
                 break;
             case 1:
-                this.contentPanel.add(decorationPanel1);
+                this.contentPanel.add(decorationPanel2);
                 break;
             default:
                 throw new RuntimeException("Unable to display this unknown Panel");
@@ -88,7 +88,7 @@ public class deliverablePanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private views.beveragePanel beveragePanel1;
     private javax.swing.JPanel contentPanel;
-    private views.decorationPanel decorationPanel1;
+    private views.decorationPanel decorationPanel2;
     private javax.swing.JComboBox deliverablesCombo;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

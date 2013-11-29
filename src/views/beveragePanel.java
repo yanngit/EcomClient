@@ -253,10 +253,13 @@ public class beveragePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_formComponentAdded
-        List<BeverageEntity> beverages = TchinTchinAdminFrame.adminFacade.getAllBeverages();
-        for (int i = 0; i < beverages.size(); i++) {
-            BeverageEntity entity = beverages.get(i);
-            addBeverageToTable(entity);
+        List<BeverageEntity> beverages;
+        beverages = TchinTchinAdminFrame.adminFacade.getAllBeverages();
+        if (beverages != null) {
+            for (int i = 0; i < beverages.size(); i++) {
+                BeverageEntity entity = beverages.get(i);
+                addBeverageToTable(entity);
+            }
         }
     }//GEN-LAST:event_formComponentAdded
 
