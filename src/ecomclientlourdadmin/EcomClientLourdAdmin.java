@@ -83,9 +83,14 @@ public class EcomClientLourdAdmin {
         for (int i = 0; i < clients.size(); i++) {
             adminFacade.removeClient(clients.get(i));
         }
-        /* Remove adresses */
+        /* Check that there isn't any other adresses, and delete remaining */
         List<AddressEntity> addresses = (List<AddressEntity>) adminFacade.getAllAddresses();
+        if (addresses.size() > 0) {
+            System.err.println("Les adresses n'ont pas été tous supprimés..."
+                    + addresses.size() + " adresses restantes :");
+        }
         for (int i = 0; i < addresses.size(); i++) {
+            System.err.println(addresses.get(i));
             adminFacade.removeAddress(addresses.get(i));
         }
 
