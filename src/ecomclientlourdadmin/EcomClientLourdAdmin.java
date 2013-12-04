@@ -42,10 +42,13 @@ public class EcomClientLourdAdmin {
             adminFacade = (AdminFacadeRemoteItf) ctx.lookup("java:global/Ecom/Ecom-ejb/AdminFacadeBean!session.interfaces.AdminFacadeRemoteItf");
 
             if (args.length > 0 && args[0].equalsIgnoreCase("delete")) {
+                System.out.println("Deleting all datas...");
                 EcomClientLourdAdmin.scriptDelete();
             } else {
+                System.out.println("Adding some datas...");
                 EcomClientLourdAdmin.scriptCreate();
             }
+            System.out.println("Done !");
         } catch (IOException | NamingException ex) {
             Logger.getLogger(EcomClientLourdAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -53,30 +56,54 @@ public class EcomClientLourdAdmin {
 
     public static void scriptDelete() {
         /* Remove Deliverables ==> remove all cocktails. */
-        ArrayList<BeverageEntity> beverages = (ArrayList<BeverageEntity>) adminFacade.getAllBeverages();
+        List<BeverageEntity> beverages = (List<BeverageEntity>) adminFacade.getAllBeverages();
         for (int i = 0; i < beverages.size(); i++) {
             adminFacade.removeBeverage(beverages.get(i));
         }
-        ArrayList<DecorationEntity> decos = (ArrayList<DecorationEntity>) adminFacade.getAllDecorations();
+        List<DecorationEntity> decos = (List<DecorationEntity>) adminFacade.getAllDecorations();
         for (int i = 0; i < decos.size(); i++) {
             adminFacade.removeDecoration(decos.get(i));
         }
+
+        /* Check that there isn't any other cocktails, and delete remaining */
+        List<CocktailEntity> cocktails = (List<CocktailEntity>) adminFacade.getAllCocktails();
+        if (cocktails.size() > 0) {
+            System.err.println("Les cocktails n'ont pas été tous supprimés..."
+                    + cocktails.size() + " cocktails restants :");
+        }
+        for (int i = 0; i < decos.size(); i++) {
+            CocktailEntity cocktail = adminFacade.getCocktailFull(cocktails.get(i).getID());
+            System.err.println(cocktail.getName() + " : "
+                    + cocktail.getDeliverables());
+            adminFacade.removeCocktail(cocktail);
+        }
+
+        /* Remove client accounts */
+        List<ClientAccountEntity> clients = (List<ClientAccountEntity>) adminFacade.getAllClients();
+        for (int i = 0; i < clients.size(); i++) {
+            adminFacade.removeClient(clients.get(i));
+        }
+        /* Remove adresses */
+        List<AddressEntity> addresses = (List<AddressEntity>) adminFacade.getAllAddresses();
+        for (int i = 0; i < addresses.size(); i++) {
+            adminFacade.removeAddress(addresses.get(i));
+        }
+
         /* TODO :
-         * * Remove clients ==> remove address.
          * * Remove orders
          */
     }
 
     public static void scriptCreate() {
         /* Add deliverable */
-        BeverageEntity whisky = EcomClientLourdAdmin.addBeverage("whisky", new Float(19), new Integer(40), new Integer(100), new Integer(20), false);
-        BeverageEntity vodka = EcomClientLourdAdmin.addBeverage("vodka", new Float(17), new Integer(40), new Integer(100), new Integer(20), false);
+        BeverageEntity whisky = EcomClientLourdAdmin.addBeverage("whisky", new Float(19), new Integer(40), new Integer(100), new Integer(20), true);
+        BeverageEntity vodka = EcomClientLourdAdmin.addBeverage("vodka", new Float(17), new Integer(40), new Integer(100), new Integer(20), true);
         BeverageEntity coca = EcomClientLourdAdmin.addBeverage("coca", new Float(3), new Integer(0), new Integer(200), new Integer(20), true);
         BeverageEntity orange = EcomClientLourdAdmin.addBeverage("orange", new Float(2), new Integer(0), new Integer(150), new Integer(20), true);
-        BeverageEntity gin = EcomClientLourdAdmin.addBeverage("gin", new Float(21), new Integer(40), new Integer(100), new Integer(20), false);
+        BeverageEntity gin = EcomClientLourdAdmin.addBeverage("gin", new Float(21), new Integer(40), new Integer(100), new Integer(20), true);
 
         DecorationEntity ombrelle = EcomClientLourdAdmin.addDecoration("Ombrelle", new Float(3), new Integer(100), true);
-        DecorationEntity citron = EcomClientLourdAdmin.addDecoration("Citron", new Float(5), new Integer(10), false);
+        DecorationEntity citron = EcomClientLourdAdmin.addDecoration("Citron", new Float(5), new Integer(10), true);
         /*Adding cocktails*/
         List<Deliverable> deliverables = new ArrayList<>();
 
@@ -118,7 +145,7 @@ public class EcomClientLourdAdmin {
         deliverables.add(orange);
         EcomClientLourdAdmin.addCocktail(
                 "Whisky Orange",
-                "Pas bien compliqué..."
+                "Pas bien compliqué...\n"
                 + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent arcu nulla, varius non malesuada id, tristique in quam. Vestibulum risus purus, porta non sapien nec, luctus facilisis nunc. Duis sollicitudin convallis venenatis. Mauris at eros vel enim ullamcorper feugiat sed in odio. Praesent leo odio, tristique vel dui eget, laoreet accumsan est. Suspendisse interdum nulla orci, a mollis magna tristique eget. Phasellus metus massa, feugiat sed tristique in, porta sed orci. Integer posuere ligula ante, vel condimentum sapien pretium sed.\n"
                 + "\n"
                 + "Quisque mattis massa et turpis aliquam pellentesque. Suspendisse velit urna, condimentum aliquet vulputate sit amet, sagittis sit amet velit. Maecenas sed posuere urna. Mauris fermentum est massa. Cras ut felis tortor. Donec enim massa, congue sed dictum et, imperdiet quis ante. Pellentesque tristique ipsum quis dolor laoreet euismod. Sed adipiscing nisl a vulputate luctus. Nullam molestie, tellus in eleifend rhoncus, leo sapien facilisis eros, in semper nulla lorem sed velit. Vivamus eget massa ante. Quisque lacinia augue sed nibh varius posuere. Aliquam erat volutpat.\n"
@@ -152,12 +179,12 @@ public class EcomClientLourdAdmin {
                 "69001",
                 "Lyon 1er",
                 "France",
-                Boolean.FALSE);
+                true);
         ClientAccountEntity alexis = EcomClientLourdAdmin.addClient(
                 "alexis",
                 "alexis",
                 address,
-                Boolean.FALSE);
+                true);
 
         /* Add a new cocktail proposed by a client */
         deliverables.clear();
@@ -183,7 +210,7 @@ public class EcomClientLourdAdmin {
         client.setPassword(password);
         client.setDelivery_address(address);
         if (persist) {
-            client = adminFacade.addClient(client);
+            client = adminFacade.updateClient(client);
         }
         return client;
     }
@@ -215,7 +242,7 @@ public class EcomClientLourdAdmin {
         cocktail.setDeliverables(list);
         cocktail.setClient(client);
 
-        cocktail = adminFacade.addCocktail(cocktail);
+        cocktail = adminFacade.updateCocktail(cocktail);
 
         return cocktail;
     }
@@ -235,7 +262,7 @@ public class EcomClientLourdAdmin {
         b.setQuantity(quantity);
 
         if (persist) {
-            b = adminFacade.addBeverage(b);
+            b = adminFacade.updateBeverage(b);
         }
 
         return b;
@@ -252,7 +279,7 @@ public class EcomClientLourdAdmin {
         deco.setQuantity(quantity);
 
         if (persist) {
-            deco = adminFacade.addDecoration(deco);
+            deco = adminFacade.updateDecoration(deco);
         }
 
         return deco;
@@ -275,7 +302,7 @@ public class EcomClientLourdAdmin {
         address.setCountry(country);
 
         if (persist) {
-            address = adminFacade.addAddress(address);
+            address = adminFacade.updateAddress(address);
         }
 
         return address;
