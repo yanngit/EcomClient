@@ -68,10 +68,10 @@ public class EcomClientLourdAdmin {
         /* Check that there isn't any other cocktails, and delete remaining */
         List<CocktailEntity> cocktails = (List<CocktailEntity>) adminFacade.getAllCocktails();
         if (cocktails.size() > 0) {
-            System.err.println("Les cocktails n'ont pas été tous supprimés..."
+            System.err.println("Les cocktails n'ont pas été tous supprimés... "
                     + cocktails.size() + " cocktails restants :");
         }
-        for (int i = 0; i < decos.size(); i++) {
+        for (int i = 0; i < cocktails.size(); i++) {
             CocktailEntity cocktail = adminFacade.getCocktailFull(cocktails.get(i).getID());
             System.err.println(cocktail.getName() + " : "
                     + cocktail.getDeliverables());
@@ -83,14 +83,10 @@ public class EcomClientLourdAdmin {
         for (int i = 0; i < clients.size(); i++) {
             adminFacade.removeClient(clients.get(i));
         }
-        /* Check that there isn't any other adresses, and delete remaining */
+
+        /* Remove addresses */
         List<AddressEntity> addresses = (List<AddressEntity>) adminFacade.getAllAddresses();
-        if (addresses.size() > 0) {
-            System.err.println("Les adresses n'ont pas été tous supprimés..."
-                    + addresses.size() + " adresses restantes :");
-        }
         for (int i = 0; i < addresses.size(); i++) {
-            System.err.println(addresses.get(i));
             adminFacade.removeAddress(addresses.get(i));
         }
 
@@ -101,14 +97,46 @@ public class EcomClientLourdAdmin {
 
     public static void scriptCreate() {
         /* Add deliverable */
-        BeverageEntity whisky = EcomClientLourdAdmin.addBeverage("whisky", new Float(19), new Integer(40), new Integer(100), new Integer(20), true);
-        BeverageEntity vodka = EcomClientLourdAdmin.addBeverage("vodka", new Float(17), new Integer(40), new Integer(100), new Integer(20), true);
-        BeverageEntity coca = EcomClientLourdAdmin.addBeverage("coca", new Float(3), new Integer(0), new Integer(200), new Integer(20), true);
-        BeverageEntity orange = EcomClientLourdAdmin.addBeverage("orange", new Float(2), new Integer(0), new Integer(150), new Integer(20), true);
-        BeverageEntity gin = EcomClientLourdAdmin.addBeverage("gin", new Float(21), new Integer(40), new Integer(100), new Integer(20), true);
+        BeverageEntity whisky = EcomClientLourdAdmin.addBeverage(
+                "Whisky",
+                new Float(19),
+                new Integer(40),
+                new Integer(100),
+                new Integer(20));
+        BeverageEntity vodka = EcomClientLourdAdmin.addBeverage(
+                "Vodka",
+                new Float(17),
+                new Integer(40),
+                new Integer(100),
+                new Integer(20));
+        BeverageEntity coca = EcomClientLourdAdmin.addBeverage(
+                "Coca-Cola - 2L",
+                new Float(3),
+                new Integer(0),
+                new Integer(200),
+                new Integer(20));
+        BeverageEntity orange = EcomClientLourdAdmin.addBeverage(
+                "Jus d'orange - 1.5L",
+                new Float(2),
+                new Integer(0),
+                new Integer(150),
+                new Integer(20));
+        BeverageEntity gin = EcomClientLourdAdmin.addBeverage(
+                "Gin",
+                new Float(21),
+                new Integer(40),
+                new Integer(100),
+                new Integer(20));
 
-        DecorationEntity ombrelle = EcomClientLourdAdmin.addDecoration("Ombrelle", new Float(3), new Integer(100), true);
-        DecorationEntity citron = EcomClientLourdAdmin.addDecoration("Citron", new Float(5), new Integer(10), true);
+        DecorationEntity ombrelle = EcomClientLourdAdmin.addDecoration(
+                "Ombrelle",
+                new Float(3),
+                new Integer(100));
+        DecorationEntity citron = EcomClientLourdAdmin.addDecoration(
+                "Citron",
+                new Float(5),
+                new Integer(10));
+
         /*Adding cocktails*/
         List<Deliverable> deliverables = new ArrayList<>();
 
@@ -183,13 +211,11 @@ public class EcomClientLourdAdmin {
                 "1 Rue de la Ré",
                 "69001",
                 "Lyon 1er",
-                "France",
-                true);
+                "France");
         ClientAccountEntity alexis = EcomClientLourdAdmin.addClient(
                 "alexis",
                 "alexis",
-                address,
-                true);
+                address);
 
         /* Add a new cocktail proposed by a client */
         deliverables.clear();
@@ -208,15 +234,12 @@ public class EcomClientLourdAdmin {
     static public ClientAccountEntity addClient(
             String login,
             String password,
-            AddressEntity address,
-            Boolean persist) {
+            AddressEntity address) {
         ClientAccountEntity client = new ClientAccountEntity();
         client.setLogin(login);
         client.setPassword(password);
         client.setDelivery_address(address);
-        if (persist) {
-            client = adminFacade.updateClient(client);
-        }
+        client = adminFacade.addClient(client);
         return client;
     }
 
@@ -247,7 +270,7 @@ public class EcomClientLourdAdmin {
         cocktail.setDeliverables(list);
         cocktail.setClient(client);
 
-        cocktail = adminFacade.updateCocktail(cocktail);
+        cocktail = adminFacade.addCocktail(cocktail);
 
         return cocktail;
     }
@@ -257,18 +280,14 @@ public class EcomClientLourdAdmin {
             Float price,
             Integer degree,
             Integer capacity,
-            Integer quantity,
-            Boolean persist) {
+            Integer quantity) {
         BeverageEntity b = new BeverageEntity();
         b.setAlcoholicDegree(degree);
         b.setName(name);
         b.setPrice(price);
         b.setCapacity(capacity);
         b.setQuantity(quantity);
-
-        if (persist) {
-            b = adminFacade.updateBeverage(b);
-        }
+        b = adminFacade.addBeverage(b);
 
         return b;
     }
@@ -276,16 +295,12 @@ public class EcomClientLourdAdmin {
     static public DecorationEntity addDecoration(
             String name,
             Float price,
-            Integer quantity,
-            Boolean persist) {
+            Integer quantity) {
         DecorationEntity deco = new DecorationEntity();
         deco.setName(name);
         deco.setPrice(price);
         deco.setQuantity(quantity);
-
-        if (persist) {
-            deco = adminFacade.updateDecoration(deco);
-        }
+        deco = adminFacade.addDecoration(deco);
 
         return deco;
     }
@@ -296,8 +311,7 @@ public class EcomClientLourdAdmin {
             String street,
             String ZIPCode,
             String city,
-            String country,
-            Boolean persist) {
+            String country) {
         AddressEntity address = new AddressEntity();
         address.setFirst_name(firstName);
         address.setSurname(lastName);
@@ -305,10 +319,7 @@ public class EcomClientLourdAdmin {
         address.setPostal_code(ZIPCode);
         address.setCity(city);
         address.setCountry(country);
-
-        if (persist) {
-            address = adminFacade.updateAddress(address);
-        }
+        address = adminFacade.addAddress(address);
 
         return address;
     }
