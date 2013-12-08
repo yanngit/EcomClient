@@ -546,7 +546,7 @@ public class cocktailsPanel extends javax.swing.JPanel {
             TableModel model = jTable1.getModel();
             cocktailID = (Long) model.getValueAt(i, 0);
 
-            CocktailEntity entity = TchinTchinAdminFrame.adminFacade.getCocktailFull(cocktailID);
+            CocktailEntity entity = TchinTchinAdminFrame.adminFacade.getCocktailFull(TchinTchinAdminFrame.adminFacade.getCocktail(cocktailID));
             cocktailNameField.setText(entity.getName());
             cocktailPhotoField.setText(entity.getPhotoURI());
             cocktailFlavorCombo.setSelectedItem(entity.getFlavor());

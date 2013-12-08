@@ -72,7 +72,7 @@ public class EcomClientLourdAdmin {
                     + cocktails.size() + " cocktails restants :");
         }
         for (int i = 0; i < cocktails.size(); i++) {
-            CocktailEntity cocktail = adminFacade.getCocktailFull(cocktails.get(i).getID());
+            CocktailEntity cocktail = adminFacade.getCocktailFull(cocktails.get(i));
             System.err.println(cocktail.getName() + " : "
                     + cocktail.getDeliverables());
             adminFacade.removeCocktail(cocktail);
