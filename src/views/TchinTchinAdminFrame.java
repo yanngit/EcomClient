@@ -49,6 +49,8 @@ public class TchinTchinAdminFrame extends javax.swing.JFrame {
         cocktailsPanel1 = new views.cocktailsPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tchin-Tchin - Administration");
+        setName("Tchin-Tchin"); // NOI18N
 
         jTabbedPane1.addTab("Livrables", deliverablePanel1);
         jTabbedPane1.addTab("Cocktails", cocktailsPanel1);

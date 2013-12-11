@@ -35,19 +35,21 @@ public class beveragePanel extends javax.swing.JPanel {
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        beverageNameField = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         beveragePriceSpinner = new javax.swing.JSpinner();
         beverageAlcoholicLabel = new javax.swing.JLabel();
         beverageAlcoholicSpinner = new javax.swing.JSpinner();
         jLabel4 = new javax.swing.JLabel();
         beverageStockSpinner = new javax.swing.JSpinner();
-        validateButton = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        beverageVolumeSpinner = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
-        beverageNameField = new javax.swing.JTextField();
+        beverageVolumeSpinner = new javax.swing.JSpinner();
+        jPanel3 = new javax.swing.JPanel();
         cancelButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
+        validateButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
 
@@ -57,11 +59,26 @@ public class beveragePanel extends javax.swing.JPanel {
             }
         });
 
-        jSplitPane1.setDoubleBuffered(true);
+        jSplitPane1.setDividerSize(5);
+
+        jPanel2.setLayout(new java.awt.GridLayout(5, 2, 10, 5));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel2.setLabelFor(beverageNameField);
         jLabel2.setText("Désignation :");
+        jPanel2.add(jLabel2);
+
+        beverageNameField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                beverageFormFocusLost(evt);
+            }
+        });
+        jPanel2.add(beverageNameField);
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel5.setLabelFor(beveragePriceSpinner);
+        jLabel5.setText("Prix :");
+        jPanel2.add(jLabel5);
 
         beveragePriceSpinner.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), Float.valueOf(0.0f), null, Float.valueOf(1.0f)));
         beveragePriceSpinner.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -69,10 +86,12 @@ public class beveragePanel extends javax.swing.JPanel {
                 beverageFormFocusLost(evt);
             }
         });
+        jPanel2.add(beveragePriceSpinner);
 
         beverageAlcoholicLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         beverageAlcoholicLabel.setLabelFor(beverageAlcoholicSpinner);
         beverageAlcoholicLabel.setText("Degré d'alcool :");
+        jPanel2.add(beverageAlcoholicLabel);
 
         beverageAlcoholicSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
         beverageAlcoholicSpinner.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -80,10 +99,12 @@ public class beveragePanel extends javax.swing.JPanel {
                 beverageFormFocusLost(evt);
             }
         });
+        jPanel2.add(beverageAlcoholicSpinner);
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel4.setLabelFor(beverageStockSpinner);
         jLabel4.setText("Stock :");
+        jPanel2.add(jLabel4);
 
         beverageStockSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
         beverageStockSpinner.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -91,18 +112,12 @@ public class beveragePanel extends javax.swing.JPanel {
                 beverageFormFocusLost(evt);
             }
         });
+        jPanel2.add(beverageStockSpinner);
 
-        validateButton.setText("Créer");
-        validateButton.setEnabled(false);
-        validateButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                validateButtonActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel5.setLabelFor(beveragePriceSpinner);
-        jLabel5.setText("Prix :");
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel3.setLabelFor(beverageVolumeSpinner);
+        jLabel3.setText("Volume (cL) :");
+        jPanel2.add(jLabel3);
 
         beverageVolumeSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(75), Integer.valueOf(0), null, Integer.valueOf(1)));
         beverageVolumeSpinner.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -110,16 +125,9 @@ public class beveragePanel extends javax.swing.JPanel {
                 beverageFormFocusLost(evt);
             }
         });
+        jPanel2.add(beverageVolumeSpinner);
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel3.setLabelFor(beverageVolumeSpinner);
-        jLabel3.setText("Volume (cL) :");
-
-        beverageNameField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                beverageFormFocusLost(evt);
-            }
-        });
+        jPanel3.setLayout(new java.awt.BorderLayout());
 
         cancelButton.setText("Annuler");
         cancelButton.setEnabled(false);
@@ -128,6 +136,7 @@ public class beveragePanel extends javax.swing.JPanel {
                 cancelButtonActionPerformed(evt);
             }
         });
+        jPanel3.add(cancelButton, java.awt.BorderLayout.EAST);
 
         deleteButton.setText("Supprimer");
         deleteButton.setEnabled(false);
@@ -136,68 +145,35 @@ public class beveragePanel extends javax.swing.JPanel {
                 deleteButtonActionPerformed(evt);
             }
         });
+        jPanel3.add(deleteButton, java.awt.BorderLayout.WEST);
+
+        validateButton.setText("Créer");
+        validateButton.setEnabled(false);
+        validateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                validateButtonActionPerformed(evt);
+            }
+        });
+        jPanel3.add(validateButton, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(beverageAlcoholicLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(beverageVolumeSpinner)
-                    .addComponent(beverageStockSpinner)
-                    .addComponent(beveragePriceSpinner)
-                    .addComponent(beverageAlcoholicSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(cancelButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(validateButton))
-                    .addComponent(beverageNameField)))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(deleteButton)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(beverageNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(beveragePriceSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(beverageStockSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(beverageVolumeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(beverageAlcoholicLabel)
-                    .addComponent(beverageAlcoholicSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(validateButton)
-                    .addComponent(cancelButton)
-                    .addComponent(deleteButton))
-                .addContainerGap())
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jScrollPane1.setViewportView(jPanel1);
 
         jSplitPane1.setRightComponent(jScrollPane1);
-
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(3, 100));
 
         jTable2.setAutoCreateRowSorter(true);
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -224,7 +200,6 @@ public class beveragePanel extends javax.swing.JPanel {
             }
         });
         jTable2.setFillsViewportHeight(true);
-        jTable2.setPreferredSize(new java.awt.Dimension(88, 0));
         jTable2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -388,6 +363,8 @@ public class beveragePanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;

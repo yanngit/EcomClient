@@ -12,6 +12,7 @@ import entity.DecorationEntity;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -58,10 +59,12 @@ public class EcomClientLourdAdmin {
         /* Remove Deliverables ==> remove all cocktails. */
         List<BeverageEntity> beverages = (List<BeverageEntity>) adminFacade.getAllBeverages();
         for (int i = 0; i < beverages.size(); i++) {
+            System.out.println("delete : " + beverages.get(i));
             adminFacade.removeBeverage(beverages.get(i));
         }
         List<DecorationEntity> decos = (List<DecorationEntity>) adminFacade.getAllDecorations();
         for (int i = 0; i < decos.size(); i++) {
+            System.out.println("delete : " + decos.get(i));
             adminFacade.removeDecoration(decos.get(i));
         }
 
@@ -142,7 +145,7 @@ public class EcomClientLourdAdmin {
 
         deliverables.add(whisky);
         deliverables.add(coca);
-        EcomClientLourdAdmin.addCocktail(
+        CocktailEntity cocktail = EcomClientLourdAdmin.addCocktail(
                 "Whisky Coca",
                 "50% Whisky"
                 + "50% Coca"
@@ -229,6 +232,8 @@ public class EcomClientLourdAdmin {
                 "gin_sec.png",
                 deliverables,
                 alexis);
+
+        EcomClientLourdAdmin.adminFacade.terminateTransactions();
     }
 
     static public ClientAccountEntity addClient(
@@ -267,10 +272,21 @@ public class EcomClientLourdAdmin {
         cocktail.setFlavor(flavor);
         cocktail.setPower(power);
         cocktail.setPhotoURI(urlPhoto);
-        cocktail.setDeliverables(list);
+        cocktail.setDeliverables(new ArrayList<>(list));
         cocktail.setClient(client);
 
         cocktail = adminFacade.addCocktail(cocktail);
+        Iterator<Deliverable> it = list.iterator();
+        while (it.hasNext()) {
+            Deliverable d = it.next();
+            if (d instanceof BeverageEntity) {
+                BeverageEntity bev = (BeverageEntity) d;
+                bev.setCocktails(adminFacade.getBeverage(d.getID()).getCocktails());
+            } else if (d instanceof DecorationEntity) {
+                DecorationEntity deco = (DecorationEntity) d;
+                deco.setCocktails(adminFacade.getDecoration(d.getID()).getCocktails());
+            }
+        }
 
         return cocktail;
     }

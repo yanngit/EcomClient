@@ -7,15 +7,13 @@ package views;
 import entity.BeverageEntity;
 import entity.CocktailEntity;
 import entity.DecorationEntity;
-import java.io.UnsupportedEncodingException;
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -47,33 +45,49 @@ public class cocktailsPanel extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        cocktailTable = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
+        fieldsPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        validateButton = new javax.swing.JButton();
-        cocktailNameField = new javax.swing.JTextField();
-        cancelButton = new javax.swing.JButton();
-        deleteButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        cocktailPhotoField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        cocktailFlavorCombo = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
-        cocktailPowerCombo = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
+        cocktailNameField = new javax.swing.JTextField();
+        cocktailPhotoField = new javax.swing.JTextField();
+        cocktailFlavorCombo = new javax.swing.JComboBox();
+        cocktailPowerCombo = new javax.swing.JComboBox();
         jScrollPane3 = new javax.swing.JScrollPane();
         cocktailRecipeText = new javax.swing.JTextArea();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        availableDelivrablesList = new javax.swing.JList();
-        removeDeliverableButton = new javax.swing.JButton();
-        addDeliverableButton = new javax.swing.JButton();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        cocktailDelivrablesList = new javax.swing.JList();
-        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        beveragesPanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        avalaibleBevList = new javax.swing.JTable();
+        removeBeverageButton = new javax.swing.JButton();
+        addBeverageButton = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        cocktailBevList = new javax.swing.JTable();
+        jSeparator4 = new javax.swing.JSeparator();
+        decoPanel = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        avalaibleDecoList = new javax.swing.JTable();
+        removeDecoButton = new javax.swing.JButton();
+        addDecoButton = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        cocktailDecoList = new javax.swing.JTable();
+        jSeparator6 = new javax.swing.JSeparator();
+        buttonsPanel = new javax.swing.JPanel();
+        deleteButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
+        validateButton = new javax.swing.JButton();
 
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -81,13 +95,13 @@ public class cocktailsPanel extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setAutoCreateRowSorter(true);
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        cocktailTable.setAutoCreateRowSorter(true);
+        cocktailTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Nom", "Prix", "Photo (nom)", "Goût", "Puissance"
+                "ID", "Nom", "Prix", "Photo", "Goût", "Puissance"
             }
         ) {
             Class[] types = new Class [] {
@@ -105,65 +119,112 @@ public class cocktailsPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setDoubleBuffered(true);
-        jTable1.setFillsViewportHeight(true);
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jTable1);
+        cocktailTable.setDoubleBuffered(true);
+        cocktailTable.setFillsViewportHeight(true);
+        cocktailTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        cocktailTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cocktailTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(cocktailTable);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.PAGE_AXIS));
+
+        java.awt.GridBagLayout jPanel5Layout = new java.awt.GridBagLayout();
+        jPanel5Layout.columnWeights = new double[] {1.0, 1.0, 10.0};
+        fieldsPanel.setLayout(jPanel5Layout);
+
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel2.setLabelFor(cocktailNameField);
         jLabel2.setText("Nom :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        fieldsPanel.add(jLabel2, gridBagConstraints);
 
-        validateButton.setText("Créer");
-        validateButton.setEnabled(false);
-        validateButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                validateButtonActionPerformed(evt);
-            }
-        });
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel1.setLabelFor(cocktailPhotoField);
+        jLabel1.setText("Photo :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        fieldsPanel.add(jLabel1, gridBagConstraints);
 
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel7.setLabelFor(cocktailFlavorCombo);
+        jLabel7.setText("Goût :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipady = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        fieldsPanel.add(jLabel7, gridBagConstraints);
+
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel8.setLabelFor(cocktailPowerCombo);
+        jLabel8.setText("Puissance :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        fieldsPanel.add(jLabel8, gridBagConstraints);
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel4.setText("Recette :");
+        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        fieldsPanel.add(jLabel4, gridBagConstraints);
+
+        cocktailNameField.setPreferredSize(new java.awt.Dimension(200, 19));
         cocktailNameField.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 cocktailNameFieldCaretUpdate(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        fieldsPanel.add(cocktailNameField, gridBagConstraints);
 
-        cancelButton.setText("Annuler");
-        cancelButton.setEnabled(false);
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
-            }
-        });
-
-        deleteButton.setText("Supprimer");
-        deleteButton.setEnabled(false);
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteButtonActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Photo :");
-
-        jLabel3.setText("img/");
-
+        cocktailPhotoField.setPreferredSize(new java.awt.Dimension(200, 19));
         cocktailPhotoField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 cocktailFormFocusLost(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        fieldsPanel.add(cocktailPhotoField, gridBagConstraints);
 
-        jLabel7.setText("Goût :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        fieldsPanel.add(cocktailFlavorCombo, gridBagConstraints);
 
-        cocktailFlavorCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        fieldsPanel.add(cocktailPowerCombo, gridBagConstraints);
 
-        jLabel8.setText("Puissance :");
-
-        cocktailPowerCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel4.setText("Recette :");
+        jScrollPane3.setPreferredSize(new java.awt.Dimension(223, 150));
 
         cocktailRecipeText.setColumns(20);
         cocktailRecipeText.setRows(5);
@@ -174,147 +235,306 @@ public class cocktailsPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(cocktailRecipeText);
 
-        java.awt.GridBagLayout jPanel2Layout = new java.awt.GridBagLayout();
-        jPanel2Layout.columnWidths = new int[] {0, 5, 0, 5, 0, 5, 0};
-        jPanel2Layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0};
-        jPanel2.setLayout(jPanel2Layout);
-
-        availableDelivrablesList.setMaximumSize(new java.awt.Dimension(50, 85));
-        availableDelivrablesList.setMinimumSize(new java.awt.Dimension(50, 85));
-        availableDelivrablesList.setPreferredSize(new java.awt.Dimension(50, 85));
-        availableDelivrablesList.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                cocktailFormFocusLost(evt);
-            }
-        });
-        jScrollPane5.setViewportView(availableDelivrablesList);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 7;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        jPanel2.add(jScrollPane5, gridBagConstraints);
-
-        removeDeliverableButton.setText("<<");
-        removeDeliverableButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeDeliverableButtonActionPerformed(evt);
-            }
-        });
-        removeDeliverableButton.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                cocktailFormFocusLost(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
-        jPanel2.add(removeDeliverableButton, gridBagConstraints);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        fieldsPanel.add(jScrollPane3, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        fieldsPanel.add(jSeparator3, gridBagConstraints);
 
-        addDeliverableButton.setText(">>");
-        addDeliverableButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addDeliverableButtonActionPerformed(evt);
-            }
-        });
-        addDeliverableButton.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                cocktailFormFocusLost(evt);
-            }
-        });
+        jPanel1.add(fieldsPanel);
+
+        java.awt.GridBagLayout jPanel2Layout = new java.awt.GridBagLayout();
+        jPanel2Layout.columnWidths = new int[] {0, 5, 0, 5, 0, 5, 0};
+        jPanel2Layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0};
+        jPanel2Layout.columnWeights = new double[] {0.1, 0.1, 1.0, 0.1, 1.0, 0.1, 1.0};
+        jPanel2Layout.rowWeights = new double[] {1.0, 0.0, 1.0, 0.0, 1.0};
+        beveragesPanel.setLayout(jPanel2Layout);
+
+        jLabel3.setText("Boissons :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        beveragesPanel.add(jLabel3, gridBagConstraints);
+
+        jLabel11.setText("Disponibles :");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
-        jPanel2.add(addDeliverableButton, gridBagConstraints);
+        beveragesPanel.add(jLabel11, gridBagConstraints);
 
-        cocktailDelivrablesList.setMaximumSize(new java.awt.Dimension(50, 85));
-        cocktailDelivrablesList.setMinimumSize(new java.awt.Dimension(50, 85));
-        cocktailDelivrablesList.setPreferredSize(new java.awt.Dimension(50, 85));
-        cocktailDelivrablesList.addFocusListener(new java.awt.event.FocusAdapter() {
+        avalaibleBevList.setAutoCreateRowSorter(true);
+        avalaibleBevList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Disponibles"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Long.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane9.setViewportView(avalaibleBevList);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridheight = 3;
+        beveragesPanel.add(jScrollPane9, gridBagConstraints);
+
+        removeBeverageButton.setText("<<");
+        removeBeverageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeBeverageButtonActionPerformed(evt);
+            }
+        });
+        removeBeverageButton.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 cocktailFormFocusLost(evt);
             }
         });
-        jScrollPane6.setViewportView(cocktailDelivrablesList);
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 7;
-        jPanel2.add(jScrollPane6, gridBagConstraints);
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        beveragesPanel.add(removeBeverageButton, gridBagConstraints);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cocktailNameField)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 12, Short.MAX_VALUE)
-                                .addComponent(cancelButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(validateButton))
-                            .addComponent(cocktailPhotoField)))
-                    .addComponent(cocktailFlavorCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cocktailPowerCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jSeparator2)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(deleteButton)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cocktailNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(cocktailPhotoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(cocktailFlavorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(cocktailPowerCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(validateButton)
-                    .addComponent(cancelButton)
-                    .addComponent(deleteButton)))
-        );
+        addBeverageButton.setText(">>");
+        addBeverageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBeverageButtonActionPerformed(evt);
+            }
+        });
+        addBeverageButton.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cocktailFormFocusLost(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        beveragesPanel.add(addBeverageButton, gridBagConstraints);
+
+        jLabel10.setText("Nécessaires :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 2;
+        beveragesPanel.add(jLabel10, gridBagConstraints);
+
+        cocktailBevList.setAutoCreateRowSorter(true);
+        cocktailBevList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nécessaires"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Long.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(cocktailBevList);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridheight = 3;
+        beveragesPanel.add(jScrollPane4, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        beveragesPanel.add(jSeparator4, gridBagConstraints);
+
+        jPanel1.add(beveragesPanel);
+
+        java.awt.GridBagLayout jPanel3Layout = new java.awt.GridBagLayout();
+        jPanel3Layout.columnWidths = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
+        jPanel3Layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0};
+        jPanel3Layout.columnWeights = new double[] {0.1, 0.1, 1.0, 0.1, 1.0, 0.1, 1.0};
+        jPanel3Layout.rowWeights = new double[] {1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0};
+        decoPanel.setLayout(jPanel3Layout);
+
+        jLabel5.setText("Décorations :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        decoPanel.add(jLabel5, gridBagConstraints);
+
+        jLabel6.setText("Disponibles :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        decoPanel.add(jLabel6, gridBagConstraints);
+
+        avalaibleDecoList.setAutoCreateRowSorter(true);
+        avalaibleDecoList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nom"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Long.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane11.setViewportView(avalaibleDecoList);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridheight = 3;
+        decoPanel.add(jScrollPane11, gridBagConstraints);
+
+        removeDecoButton.setText("<<");
+        removeDecoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeDecoButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        decoPanel.add(removeDecoButton, gridBagConstraints);
+
+        addDecoButton.setText(">>");
+        addDecoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDecoButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        decoPanel.add(addDecoButton, gridBagConstraints);
+
+        jLabel9.setText("Nécessaires :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 2;
+        decoPanel.add(jLabel9, gridBagConstraints);
+
+        cocktailDecoList.setAutoCreateRowSorter(true);
+        cocktailDecoList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nom"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Long.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane10.setViewportView(cocktailDecoList);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridheight = 3;
+        decoPanel.add(jScrollPane10, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        decoPanel.add(jSeparator6, gridBagConstraints);
+
+        jPanel1.add(decoPanel);
+
+        buttonsPanel.setLayout(new java.awt.BorderLayout());
+
+        deleteButton.setText("Supprimer");
+        deleteButton.setEnabled(false);
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+        buttonsPanel.add(deleteButton, java.awt.BorderLayout.WEST);
+
+        cancelButton.setText("Annuler");
+        cancelButton.setEnabled(false);
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+        buttonsPanel.add(cancelButton, java.awt.BorderLayout.EAST);
+
+        validateButton.setText("Créer");
+        validateButton.setEnabled(false);
+        validateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                validateButtonActionPerformed(evt);
+            }
+        });
+        buttonsPanel.add(validateButton, java.awt.BorderLayout.CENTER);
+
+        jPanel1.add(buttonsPanel);
 
         jScrollPane2.setViewportView(jPanel1);
 
@@ -327,40 +547,52 @@ public class cocktailsPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jScrollPane2)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addDeliverableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDeliverableButtonActionPerformed
-        DefaultListModel availibleListModel = (DefaultListModel) availableDelivrablesList.getModel();
-        DefaultListModel listModel = (DefaultListModel) cocktailDelivrablesList.getModel();
+    private void addBeverageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBeverageButtonActionPerformed
+        List<List> availableBevVector = ((DefaultTableModel) avalaibleBevList.getModel()).getDataVector();
+        List<List> cocktailBevVector = ((DefaultTableModel) cocktailBevList.getModel()).getDataVector();
+        int row = avalaibleBevList.getSelectedRow();
+        List bev = availableBevVector.get(row);
 
-        Deliverable deliverable = (Deliverable) availableDelivrablesList.getSelectedValue();
-        listModel.addElement(deliverable);
-        availibleListModel.removeElement(deliverable);
-    }//GEN-LAST:event_addDeliverableButtonActionPerformed
+        Long bevID = (Long) bev.get(0);
+        BeverageEntity bevEntity = TchinTchinAdminFrame.adminFacade.getBeverage(bevID);
+        if (currentCocktail.getDeliverables() == null) {
+            currentCocktail.setDeliverables((List) new ArrayList<>());
+        }
+        currentCocktail.getDeliverables().add(bevEntity);
+
+        cocktailBevVector.add(bev);
+        availableBevVector.remove(bev);
+
+        ((DefaultTableModel) avalaibleBevList.getModel()).setDataVector(
+                (Vector) availableBevVector,
+                new Vector(Arrays.asList(deliverableTableColumn)));
+        ((DefaultTableModel) cocktailBevList.getModel()).setDataVector(
+                (Vector) cocktailBevVector,
+                new Vector(Arrays.asList(deliverableTableColumn)));
+    }//GEN-LAST:event_addBeverageButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        CocktailEntity entity = new CocktailEntity();
-        entity.setName(cocktailNameField.getText());
-        entity.setID(cocktailID);
-
         if (JOptionPane.showConfirmDialog(this,
                 "Êtes-vous sûr de vouloir supprimer ce cocktail :\n"
-                + entity.getName(),
+                + currentCocktail.getName(),
                 "Suppression d'un cocktail",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
-            TchinTchinAdminFrame.adminFacade.removeCocktail(entity);
-            int removedRow = jTable1.getSelectedRow();
-            ((DefaultTableModel) jTable1.getModel()).fireTableRowsDeleted(removedRow, removedRow);
-            ((DefaultTableModel) jTable1.getModel()).removeRow(removedRow);
+            TchinTchinAdminFrame.adminFacade.removeCocktail(currentCocktail);
+            int removedRow = cocktailTable.getSelectedRow();
+            ((DefaultTableModel) cocktailTable.getModel()).fireTableRowsDeleted(removedRow, removedRow);
+            ((DefaultTableModel) cocktailTable.getModel()).removeRow(removedRow);
 
             JOptionPane.showMessageDialog(this,
                     "Cocktail supprimé !",
@@ -381,21 +613,50 @@ public class cocktailsPanel extends javax.swing.JPanel {
         cocktailFlavorCombo.setSelectedIndex(0);
         cocktailPowerCombo.setSelectedIndex(0);
         cocktailRecipeText.setText("");
-        ((DefaultListModel) cocktailDelivrablesList.getModel()).removeAllElements();
+
+        List<List> availableBevVector = ((DefaultTableModel) avalaibleBevList.getModel()).getDataVector();
+        List<List> cocktailBevVector = ((DefaultTableModel) cocktailBevList.getModel()).getDataVector();
+        Iterator<List> it = cocktailBevVector.iterator();
+        while (it.hasNext()) {
+            List value = it.next();
+            availableBevVector.add(value);
+        }
+        cocktailBevVector.clear();
+        List<List> availableDecoVector = ((DefaultTableModel) avalaibleDecoList.getModel()).getDataVector();
+        List<List> cocktailDecoVector = ((DefaultTableModel) cocktailDecoList.getModel()).getDataVector();
+        Iterator<List> itDeco = cocktailDecoVector.iterator();
+        while (itDeco.hasNext()) {
+            List value = itDeco.next();
+            availableDecoVector.add(value);
+        }
+        cocktailDecoVector.clear();
+
+        ((DefaultTableModel) avalaibleBevList.getModel()).setDataVector(
+                (Vector) availableBevVector,
+                new Vector<>(Arrays.asList(deliverableTableColumn)));
+        ((DefaultTableModel) cocktailBevList.getModel()).setDataVector(
+                (Vector) cocktailBevVector,
+                new Vector<>(Arrays.asList(deliverableTableColumn)));
+        ((DefaultTableModel) avalaibleDecoList.getModel()).setDataVector(
+                (Vector) availableDecoVector,
+                new Vector<>(Arrays.asList(deliverableTableColumn)));
+        ((DefaultTableModel) cocktailDecoList.getModel()).setDataVector(
+                (Vector) cocktailDecoVector,
+                new Vector<>(Arrays.asList(deliverableTableColumn)));
 
         validateButton.setText("Créer");
         validateButton.setEnabled(false);
         cancelButton.setEnabled(false);
         deleteButton.setEnabled(false);
 
-        cocktailID = null;
+        currentCocktail = new CocktailEntity();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void cocktailFormFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cocktailFormFocusLost
         if (!cocktailNameField.getText().isEmpty()
                 && !cocktailPhotoField.getText().isEmpty()
                 && !cocktailRecipeText.getText().isEmpty()
-                && cocktailDelivrablesList.getModel().getSize() > 0) {
+                && cocktailBevList.getModel().getRowCount() > 0) {
             cancelButton.setEnabled(true);
             validateButton.setEnabled(true);
         } else {
@@ -404,46 +665,46 @@ public class cocktailsPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cocktailFormFocusLost
 
     private void validateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validateButtonActionPerformed
-        CocktailEntity entity = new CocktailEntity();
-        entity.setName(cocktailNameField.getText());
-        entity.setPhotoURI(cocktailPhotoField.getText());
-        entity.setFlavor((CocktailFlavorEnum) cocktailFlavorCombo.getSelectedItem());
-        entity.setPower((CocktailPowerEnum) cocktailPowerCombo.getSelectedItem());
-        entity.setRecipe(cocktailRecipeText.getText());
+        currentCocktail.setName(cocktailNameField.getText());
+        currentCocktail.setPhotoURI(cocktailPhotoField.getText());
+        currentCocktail.setFlavor((CocktailFlavorEnum) cocktailFlavorCombo.getSelectedItem());
+        currentCocktail.setPower((CocktailPowerEnum) cocktailPowerCombo.getSelectedItem());
+        currentCocktail.setRecipe(cocktailRecipeText.getText());
 
         /* Create list of deliverables */
-        ArrayList<Deliverable> deliverables = new ArrayList<>();
-        DefaultListModel listModel = ((DefaultListModel) cocktailDelivrablesList.getModel());
-        for (int i = 0; i < listModel.getSize(); i++) {
-            deliverables.add((Deliverable) listModel.get(i));
-        }
-        entity.setDeliverables(deliverables);
+        /* List of deliverables is already defined */
+        /*List<Deliverable> deliverables = new ArrayList<>();
+         List<List> cocktailBevVector = ((DefaultTableModel) cocktailBevList.getModel()).getDataVector();
+         Iterator<List> it = cocktailBevVector.iterator();
+         while (it.hasNext()) {
+         List value = it.next();
+         deliverables.add(TchinTchinAdminFrame.adminFacade.getBeverage((Long) value.get(0)));
+         }
+         currentCocktail.setDeliverables(deliverables);*/
 
         String dialogTitle;
         String dialogContent;
 
         /* If we are creating a new cocktail */
-        if (cocktailID == null) {
+        if (currentCocktail.getID() == null) {
             // Add new one to database
-            entity = TchinTchinAdminFrame.adminFacade.addCocktail(entity);
+            currentCocktail = TchinTchinAdminFrame.adminFacade.addCocktail(currentCocktail);
             // Update the table display
-            addCocktailToTable(entity);
+            addCocktailToTable(currentCocktail);
 
             dialogTitle = "Création d'un cocktail";
             dialogContent = "Le cocktail a été créé avec succès !";
         } /* We are updating an already present one */ else {
-            entity.setID(cocktailID);
-
             // Update it in database
-            TchinTchinAdminFrame.adminFacade.updateCocktail(entity);
+            TchinTchinAdminFrame.adminFacade.updateCocktail(currentCocktail);
             // Update in table
-            DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
-            int rowToUpdate = jTable1.getSelectedRow();
-            tableModel.setValueAt(entity.getName(), rowToUpdate, 1);
-            tableModel.setValueAt(entity.getPrice(), rowToUpdate, 2);
-            tableModel.setValueAt(entity.getPhotoURI(), rowToUpdate, 3);
-            tableModel.setValueAt(entity.getFlavor().toString(), rowToUpdate, 4);
-            tableModel.setValueAt(entity.getPower().toString(), rowToUpdate, 5);
+            DefaultTableModel tableModel = (DefaultTableModel) cocktailTable.getModel();
+            int rowToUpdate = cocktailTable.getSelectedRow();
+            tableModel.setValueAt(currentCocktail.getName(), rowToUpdate, 1);
+            tableModel.setValueAt(currentCocktail.getPrice(), rowToUpdate, 2);
+            tableModel.setValueAt(currentCocktail.getPhotoURI(), rowToUpdate, 3);
+            tableModel.setValueAt(currentCocktail.getFlavor().toString(), rowToUpdate, 4);
+            tableModel.setValueAt(currentCocktail.getPower().toString(), rowToUpdate, 5);
 
             dialogTitle = "Modification d'un cocktail";
             dialogContent = "Le cocktail a été modifiée avec succès !";
@@ -452,14 +713,29 @@ public class cocktailsPanel extends javax.swing.JPanel {
         this.cancelButtonActionPerformed(evt);
     }//GEN-LAST:event_validateButtonActionPerformed
 
-    private void removeDeliverableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeDeliverableButtonActionPerformed
-        DefaultListModel availibleListModel = (DefaultListModel) availableDelivrablesList.getModel();
-        DefaultListModel listModel = (DefaultListModel) cocktailDelivrablesList.getModel();
+    private void removeBeverageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBeverageButtonActionPerformed
+        List<List> availableBevVector = ((DefaultTableModel) avalaibleBevList.getModel()).getDataVector();
+        List<List> cocktailBevVector = ((DefaultTableModel) cocktailBevList.getModel()).getDataVector();
+        int row = cocktailBevList.getSelectedRow();
+        List bev = cocktailBevVector.get(row);
 
-        Deliverable deliverable = (Deliverable) cocktailDelivrablesList.getSelectedValue();
-        availibleListModel.addElement(deliverable);
-        listModel.removeElement(deliverable);
-    }//GEN-LAST:event_removeDeliverableButtonActionPerformed
+        Long bevID = (Long) bev.get(0);
+        BeverageEntity bevEntity = TchinTchinAdminFrame.adminFacade.getBeverage(bevID);
+        if (currentCocktail.getDeliverables() == null) {
+            currentCocktail.setDeliverables((List) new ArrayList<>());
+        }
+        currentCocktail.getDeliverables().remove(bevEntity);
+
+        cocktailBevVector.remove(bev);
+        availableBevVector.add(bev);
+
+        ((DefaultTableModel) avalaibleBevList.getModel()).setDataVector(
+                (Vector) availableBevVector,
+                new Vector(Arrays.asList(deliverableTableColumn)));
+        ((DefaultTableModel) cocktailBevList.getModel()).setDataVector(
+                (Vector) cocktailBevVector,
+                new Vector(Arrays.asList(deliverableTableColumn)));
+    }//GEN-LAST:event_removeBeverageButtonActionPerformed
 
     private void cocktailNameFieldCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_cocktailNameFieldCaretUpdate
         String photo;
@@ -470,65 +746,224 @@ public class cocktailsPanel extends javax.swing.JPanel {
         cocktailPhotoField.setText(photo + ".png");
     }//GEN-LAST:event_cocktailNameFieldCaretUpdate
 
+    private void removeDecoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeDecoButtonActionPerformed
+        List<List> availableDecoVector = ((DefaultTableModel) avalaibleDecoList.getModel()).getDataVector();
+        List<List> cocktailDecoVector = ((DefaultTableModel) cocktailDecoList.getModel()).getDataVector();
+        int row = cocktailDecoList.getSelectedRow();
+        List deco = cocktailDecoVector.get(row);
+
+        Long decoID = (Long) deco.get(0);
+        DecorationEntity decoEntity = TchinTchinAdminFrame.adminFacade.getDecoration(decoID);
+        if (currentCocktail.getDeliverables() == null) {
+            currentCocktail.setDeliverables((List) new ArrayList<>());
+        }
+        cocktailDecoVector.remove(deco);
+        availableDecoVector.add(deco);
+
+        ((DefaultTableModel) avalaibleDecoList.getModel()).setDataVector(
+                (Vector) availableDecoVector,
+                new Vector(Arrays.asList(deliverableTableColumn)));
+        ((DefaultTableModel) cocktailDecoList.getModel()).setDataVector(
+                (Vector) cocktailDecoVector,
+                new Vector(Arrays.asList(deliverableTableColumn)));
+    }//GEN-LAST:event_removeDecoButtonActionPerformed
+
+    private void addDecoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDecoButtonActionPerformed
+        List<List> availableDecoVector = ((DefaultTableModel) avalaibleDecoList.getModel()).getDataVector();
+        List<List> cocktailDecoVector = ((DefaultTableModel) cocktailDecoList.getModel()).getDataVector();
+        int row = avalaibleDecoList.getSelectedRow();
+        List deco = availableDecoVector.get(row);
+
+        Long decoID = (Long) deco.get(0);
+        DecorationEntity decoEntity = TchinTchinAdminFrame.adminFacade.getDecoration(decoID);
+        if (currentCocktail.getDeliverables() == null) {
+            currentCocktail.setDeliverables((List) new ArrayList<>());
+        }
+        currentCocktail.getDeliverables().add(decoEntity);
+
+        cocktailDecoVector.add(deco);
+        availableDecoVector.remove(deco);
+
+
+        ((DefaultTableModel) avalaibleDecoList.getModel()).setDataVector(
+                (Vector) availableDecoVector,
+                new Vector(Arrays.asList(deliverableTableColumn)));
+        ((DefaultTableModel) cocktailDecoList.getModel()).setDataVector(
+                (Vector) cocktailDecoVector,
+                new Vector(Arrays.asList(deliverableTableColumn)));
+    }//GEN-LAST:event_addDecoButtonActionPerformed
+
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        /* Display existing Cocktails */
-        Vector<CocktailEntity> cocktails;
-        cocktails = (Vector<CocktailEntity>) TchinTchinAdminFrame.adminFacade.getAllCocktails();
+        /* Clear current content */
+        ((DefaultTableModel) cocktailTable.getModel()).setDataVector(
+                new Object[][]{},
+                cocktailTableColumn);
+
+        ((DefaultTableModel) avalaibleBevList.getModel()).setDataVector(
+                new Object[][]{},
+                deliverableTableColumn);
+
+        ((DefaultTableModel) avalaibleDecoList.getModel()).setDataVector(
+                new Object[][]{},
+                deliverableTableColumn);
+
+        /* Fetch new content */
+        DefaultTableModel tableModel;
+
+        List<CocktailEntity> cocktails;
+        cocktails = (List<CocktailEntity>) TchinTchinAdminFrame.adminFacade.getAllCocktails();
         for (int i = 0; i < cocktails.size(); i++) {
             addCocktailToTable(cocktails.get(i));
         }
 
-        DefaultListModel<Object> listModel;
-        listModel = (DefaultListModel<Object>) availableDelivrablesList.getModel();
+        tableModel = (DefaultTableModel) avalaibleBevList.getModel();
+
         /* Display available Deliverable */
-        /**
-         * TODO : Separate the two lists
-         */
-        ArrayList<BeverageEntity> beverages;
-        beverages = (ArrayList<BeverageEntity>) TchinTchinAdminFrame.adminFacade.getAllBeverages();
-        for (int i = 0; i < beverages.size(); i++) {
-            listModel.addElement(beverages.get(i));
+        Iterator<BeverageEntity> beverages;
+        beverages = TchinTchinAdminFrame.adminFacade.getAllBeverages().iterator();
+        while (beverages.hasNext()) {
+            BeverageEntity bev = beverages.next();
+            tableModel.addRow(new Object[]{bev.getID(), bev.getName()});
         }
-        ArrayList<DecorationEntity> decos;
-        decos = (ArrayList<DecorationEntity>) TchinTchinAdminFrame.adminFacade.getAllDecorations();
-        for (int i = 0; i < decos.size(); i++) {
-            listModel.addElement(decos.get(i));
+
+        tableModel = (DefaultTableModel) avalaibleDecoList.getModel();
+        /* Display available Decoration */
+        Iterator<DecorationEntity> decos;
+        decos = TchinTchinAdminFrame.adminFacade.getAllDecorations().iterator();
+        while (decos.hasNext()) {
+            DecorationEntity deco = decos.next();
+            tableModel.addRow(new Object[]{deco.getID(), deco.getName()});
         }
+
+        /* Create combobox content */
+        cocktailFlavorCombo.setModel(new DefaultComboBoxModel(CocktailFlavorEnum.values()));
+        cocktailPowerCombo.setModel(new DefaultComboBoxModel(CocktailPowerEnum.values()));
     }//GEN-LAST:event_formComponentShown
+
+    private void cocktailTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cocktailTableMouseClicked
+        cancelButtonActionPerformed(null);
+        int i = cocktailTable.getSelectedRow();
+        if (i >= 0) {
+            TableModel model = cocktailTable.getModel();
+            currentCocktail.setID((Long) model.getValueAt(i, 0));
+            currentCocktail = TchinTchinAdminFrame.adminFacade.getCocktailFull(currentCocktail.getID());
+
+            /* Display cocktail informations */
+            cocktailNameField.setText(currentCocktail.getName());
+            cocktailPhotoField.setText(currentCocktail.getPhotoURI());
+            cocktailFlavorCombo.setSelectedItem(currentCocktail.getFlavor());
+            cocktailPowerCombo.setSelectedItem(currentCocktail.getPower());
+            cocktailRecipeText.setText(currentCocktail.getRecipe());
+            // Display list of deliverables
+            List<List> availableBevVector = ((DefaultTableModel) avalaibleBevList.getModel()).getDataVector();
+            List<List> cocktailBevVector = ((DefaultTableModel) cocktailBevList.getModel()).getDataVector();
+            List<List> availableDecoVector = ((DefaultTableModel) avalaibleDecoList.getModel()).getDataVector();
+            List<List> cocktailDecoVector = ((DefaultTableModel) cocktailDecoList.getModel()).getDataVector();
+            Iterator<Deliverable> deliverables = currentCocktail.getDeliverables().iterator();
+            while (deliverables.hasNext()) {
+                Deliverable deliverable = deliverables.next();
+                if (deliverable instanceof BeverageEntity) {
+                    BeverageEntity bev = (BeverageEntity) deliverable;
+
+                    Iterator avalaibleBevIt = availableBevVector.iterator();
+                    boolean found = false;
+                    List bevInList = null;
+                    while (avalaibleBevIt.hasNext() && !found) {
+                        bevInList = (List) avalaibleBevIt.next();
+                        if ((Long) (bevInList.get(0)) == currentCocktail.getID()) {
+                            found = true;
+                        }
+                    }
+                    cocktailBevVector.add(bevInList);
+                    availableBevVector.remove(bevInList);
+                } else if (deliverable instanceof DecorationEntity) {
+                    DecorationEntity deco = (DecorationEntity) deliverable;
+
+                    Iterator avalaibleDecoIt = availableDecoVector.iterator();
+                    boolean found = false;
+                    List decoInList = null;
+                    while (avalaibleDecoIt.hasNext() && !found) {
+                        decoInList = (List) avalaibleDecoIt.next();
+                        if ((Long) (decoInList.get(0)) == currentCocktail.getID()) {
+                            found = true;
+                        }
+                    }
+                    cocktailDecoVector.add(decoInList);
+                    availableDecoVector.remove(decoInList);
+                }
+            }
+
+            ((DefaultTableModel) avalaibleBevList.getModel()).setDataVector(
+                    (Vector) availableBevVector,
+                    new Vector<>(Arrays.asList(deliverableTableColumn)));
+            ((DefaultTableModel) cocktailBevList.getModel()).setDataVector(
+                    (Vector) cocktailBevVector,
+                    new Vector<>(Arrays.asList(deliverableTableColumn)));
+            ((DefaultTableModel) avalaibleDecoList.getModel()).setDataVector(
+                    (Vector) availableDecoVector,
+                    new Vector<>(Arrays.asList(deliverableTableColumn)));
+            ((DefaultTableModel) cocktailDecoList.getModel()).setDataVector(
+                    (Vector) cocktailDecoVector,
+                    new Vector<>(Arrays.asList(deliverableTableColumn)));
+
+            validateButton.setText("Modifier");
+            validateButton.setEnabled(true);
+            cancelButton.setEnabled(true);
+            deleteButton.setEnabled(true);
+        }
+    }//GEN-LAST:event_cocktailTableMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addDeliverableButton;
-    private javax.swing.JList availableDelivrablesList;
+    private javax.swing.JButton addBeverageButton;
+    private javax.swing.JButton addDecoButton;
+    private javax.swing.JTable avalaibleBevList;
+    private javax.swing.JTable avalaibleDecoList;
+    private javax.swing.JPanel beveragesPanel;
+    private javax.swing.JPanel buttonsPanel;
     private javax.swing.JButton cancelButton;
-    private javax.swing.JList cocktailDelivrablesList;
+    private javax.swing.JTable cocktailBevList;
+    private javax.swing.JTable cocktailDecoList;
     private javax.swing.JComboBox cocktailFlavorCombo;
     private javax.swing.JTextField cocktailNameField;
     private javax.swing.JTextField cocktailPhotoField;
     private javax.swing.JComboBox cocktailPowerCombo;
     private javax.swing.JTextArea cocktailRecipeText;
+    private javax.swing.JTable cocktailTable;
+    private javax.swing.JPanel decoPanel;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JPanel fieldsPanel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JButton removeDeliverableButton;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JButton removeBeverageButton;
+    private javax.swing.JButton removeDecoButton;
     private javax.swing.JButton validateButton;
     // End of variables declaration//GEN-END:variables
-    private Long cocktailID;
+    private CocktailEntity currentCocktail = new CocktailEntity();
+    private String[] cocktailTableColumn = new String[]{"ID", "Nom", "Prix", "Photo", "Goût", "Puissance"};
+    private String[] deliverableTableColumn = new String[]{"ID", "Nom"};
 
     private void addCocktailToTable(CocktailEntity entity) {
-        DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel tableModel = (DefaultTableModel) cocktailTable.getModel();
         Object[] row = {entity.getID(),
             entity.getName(),
             entity.getPrice(),
@@ -538,31 +973,5 @@ public class cocktailsPanel extends javax.swing.JPanel {
         tableModel.addRow(row);
         int rowIdx = tableModel.getRowCount() - 1;
         tableModel.fireTableRowsInserted(rowIdx, rowIdx);
-    }
-
-    private void jTable2SelectionChanged() {
-        int i = jTable1.getSelectedRow();
-        if (i >= 0) {
-            TableModel model = jTable1.getModel();
-            cocktailID = (Long) model.getValueAt(i, 0);
-
-            CocktailEntity entity = TchinTchinAdminFrame.adminFacade.getCocktailFull(cocktailID);
-            cocktailNameField.setText(entity.getName());
-            cocktailPhotoField.setText(entity.getPhotoURI());
-            cocktailFlavorCombo.setSelectedItem(entity.getFlavor());
-            cocktailPowerCombo.setSelectedItem(entity.getPower());
-            // Display list of deliverables
-            DefaultListModel availibleListModel = (DefaultListModel) availableDelivrablesList.getModel();
-            DefaultListModel listModel = (DefaultListModel) cocktailDelivrablesList.getModel();
-            ArrayList<Deliverable> deliverables = (ArrayList<Deliverable>) entity.getDeliverables();
-            for (i = 0; i < deliverables.size(); i++) {
-                int index = availibleListModel.indexOf(deliverables.get(i));
-                if (index == -1) {
-                    throw new RuntimeException("Cocktail with non-existent deliverable");
-                } else {
-                    listModel.addElement(availibleListModel.remove(index));
-                }
-            }
-        }
     }
 }
