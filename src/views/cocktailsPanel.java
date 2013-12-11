@@ -846,7 +846,7 @@ public class cocktailsPanel extends javax.swing.JPanel {
         if (i >= 0) {
             TableModel model = cocktailTable.getModel();
             currentCocktail.setID((Long) model.getValueAt(i, 0));
-            currentCocktail = TchinTchinAdminFrame.adminFacade.getCocktailFull(currentCocktail.getID());
+            currentCocktail = TchinTchinAdminFrame.adminFacade.getCocktailFull(currentCocktail);
 
             /* Display cocktail informations */
             cocktailNameField.setText(currentCocktail.getName());
