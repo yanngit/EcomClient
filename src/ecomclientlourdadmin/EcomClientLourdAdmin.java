@@ -209,7 +209,7 @@ public class EcomClientLourdAdmin {
                 new Integer(150),
                 new Integer(20));
         BeverageEntity icetea = EcomClientLourdAdmin.addBeverage(
-                "Le thé glacé",
+                "Thé glacé",
                 new Float(3),
                 new Integer(0),
                 new Integer(150),
