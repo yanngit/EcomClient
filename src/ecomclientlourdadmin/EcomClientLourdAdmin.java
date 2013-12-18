@@ -113,13 +113,13 @@ public class EcomClientLourdAdmin {
                 new Integer(100),
                 new Integer(20));
         BeverageEntity coca = EcomClientLourdAdmin.addBeverage(
-                "Coca-Cola - 2L",
+                "Coca-Cola",
                 new Float(3),
                 new Integer(0),
                 new Integer(200),
                 new Integer(20));
         BeverageEntity orange = EcomClientLourdAdmin.addBeverage(
-                "Jus d'orange - 1.5L",
+                "Jus d'orange",
                 new Float(2),
                 new Integer(0),
                 new Integer(150),
@@ -131,7 +131,7 @@ public class EcomClientLourdAdmin {
                 new Integer(100),
                 new Integer(20));
         BeverageEntity grenade = EcomClientLourdAdmin.addBeverage(
-                "Jus de grenade - 1L",
+                "Jus de grenade",
                 new Float(3),
                 new Integer(0),
                 new Integer(100),
@@ -161,73 +161,85 @@ public class EcomClientLourdAdmin {
                 new Integer(100),
                 new Integer(20));
         BeverageEntity citron_lime = EcomClientLourdAdmin.addBeverage(
-                "Sirop de citron-lime - 1L",
+                "Sirop de citron-lime",
                 new Float(5),
                 new Integer(0),
                 new Integer(100),
                 new Integer(20));
         BeverageEntity coco = EcomClientLourdAdmin.addBeverage(
-                "Sirop de coco - 1.5L",
+                "Sirop de coco",
                 new Float(6),
                 new Integer(0),
                 new Integer(150),
                 new Integer(20));
         BeverageEntity coffee = EcomClientLourdAdmin.addBeverage(
-                "Sirop de café - 1L",
+                "Sirop de café",
                 new Float(5),
                 new Integer(0),
                 new Integer(100),
                 new Integer(20));
         BeverageEntity cream = EcomClientLourdAdmin.addBeverage(
-                "Crème - 0.5L",
+                "Crème",
                 new Float(6),
                 new Integer(0),
                 new Integer(50),
                 new Integer(20));
         BeverageEntity chocolate = EcomClientLourdAdmin.addBeverage(
-                "Sirop de chocolat - 1.5L",
+                "Sirop de chocolat",
                 new Float(8),
                 new Integer(0),
                 new Integer(150),
                 new Integer(20));
         BeverageEntity lychee = EcomClientLourdAdmin.addBeverage(
-                "Sirop lychee - 1.5L",
+                "Jus de litchi",
                 new Float(10),
                 new Integer(0),
                 new Integer(150),
                 new Integer(20));
         BeverageEntity soda = EcomClientLourdAdmin.addBeverage(
-                "Soda - 2L",
+                "Soda",
                 new Float(3),
                 new Integer(0),
                 new Integer(200),
                 new Integer(20));
+        BeverageEntity limonade = EcomClientLourdAdmin.addBeverage(
+                "Limonade",
+                new Float(3),
+                new Integer(0),
+                new Integer(150),
+                new Integer(20));
+        BeverageEntity icetea = EcomClientLourdAdmin.addBeverage(
+                "Le thé glacé",
+                new Float(3),
+                new Integer(0),
+                new Integer(150),
+                new Integer(20));
         BeverageEntity sirop_fraise = EcomClientLourdAdmin.addBeverage(
-                "Sirop de fraise - 1L",
+                "Sirop de fraise",
                 new Float(5),
                 new Integer(0),
                 new Integer(100),
                 new Integer(20));
         BeverageEntity ananas = EcomClientLourdAdmin.addBeverage(
-                "Jus d'ananas - 1L",
+                "Jus d'ananas",
                 new Float(5),
                 new Integer(0),
                 new Integer(100),
                 new Integer(20));
         BeverageEntity cocomilk = EcomClientLourdAdmin.addBeverage(
-                "Lait du coco - 1L",
+                "Lait de coco",
                 new Float(6),
                 new Integer(0),
                 new Integer(100),
                 new Integer(20));
-        BeverageEntity sirop_mentre = EcomClientLourdAdmin.addBeverage(
-                "Sirop de mentre - 1L",
+        BeverageEntity sirop_menthe = EcomClientLourdAdmin.addBeverage(
+                "Sirop de menthe",
                 new Float(4),
                 new Integer(0),
                 new Integer(100),
                 new Integer(20));
-        BeverageEntity banana = EcomClientLourdAdmin.addBeverage(
-                "Jus de banana - 1.5L",
+        BeverageEntity banane = EcomClientLourdAdmin.addBeverage(
+                "Jus de banane",
                 new Float(5),
                 new Integer(0),
                 new Integer(150),
@@ -249,8 +261,8 @@ public class EcomClientLourdAdmin {
                 "Mytyille",
                 new Float(2),
                 new Integer(15));
-        DecorationEntity mentre = EcomClientLourdAdmin.addDecoration(
-                "Mentre",
+        DecorationEntity menthe = EcomClientLourdAdmin.addDecoration(
+                "Menthe",
                 new Float(2),
                 new Integer(30));
         DecorationEntity cerise = EcomClientLourdAdmin.addDecoration(
@@ -270,42 +282,44 @@ public class EcomClientLourdAdmin {
                 new Float(1),
                 new Integer(100));
         DecorationEntity old_fashioned_glasse = EcomClientLourdAdmin.addDecoration(
-                "Old fashioned glasse",
+                "Verre Old fashioned",
                 new Float(10),
                 new Integer(30));
         DecorationEntity martini_glasse = EcomClientLourdAdmin.addDecoration(
-                "Martini glasse",
+                "Verre à martini",
                 new Float(10),
                 new Integer(30));
+        DecorationEntity margarita_glasse = EcomClientLourdAdmin.addDecoration(
+                "Verre à margarita",
+                new Float(8),
+                new Integer(30));  
+        DecorationEntity shooter_glasse = EcomClientLourdAdmin.addDecoration(
+                "Verre à shooter",
+                new Float(4),
+                new Integer(30));  
+        DecorationEntity toddy_glasse = EcomClientLourdAdmin.addDecoration(
+                "Verre toddy",
+                new Float(4),
+                new Integer(30));  
+        DecorationEntity creme_fouettee = EcomClientLourdAdmin.addDecoration(
+                "Crème fouettée",
+                new Float(5),
+                new Integer(20));
         
 
         /*Adding cocktails*/
         List<Deliverable> deliverables = new ArrayList<>();
-        deliverables.add(coca);
-        deliverables.add(orange);
-        deliverables.add(ombrelle);
-        deliverables.add(mentre);
-        EcomClientLourdAdmin.addCocktail(
-                "Coca Orange",
-                "Trop dégueulasse pour avoir une recette."
-                + "Fait bien comme tu le sens, avec beaucoup de glaçons !",
-                CocktailFlavorEnum.FRUITY,
-                CocktailPowerEnum.SOFT,
-                "coca_orange.png",
-                deliverables);
-        
-        deliverables.clear();
         deliverables.add(martini);
-        deliverables.add(citron_lime);
+        deliverables.add(martini_glasse);
         EcomClientLourdAdmin.addCocktail(
-                "Sake martini",
-                "1. Combine the dry gin, sake and ginger slice in a shaker filled with ice cubes.\n"
+                "Martini saké",
+                "1. Dans un shaker rempli de glaçons, ajouter le martini, le saké, et la tranche de gingembre.\n"
                 + "\n"
-                + "2. Shake vigorously for 8 to 10 seconds.\n"
+                + "2. Agiter vivement de 8 à 10 secondes.\n"
                 + "\n"
-                + "3. Strain into a highball glass using an ice strainer with lemon lime.\n"
+                + "3. Filtrer le contenu du shaker dans un à verre à martini, à l’aide d’une passoire à glaçons.\n"
                 + "\n"
-                + "4. Garnish with an olive on a pick.",
+                + "4. Garnir d’une olive sur une pique.",
                 CocktailFlavorEnum.BITTER,
                 CocktailPowerEnum.STRONG,
                 "sake_martini.png",
@@ -317,15 +331,15 @@ public class EcomClientLourdAdmin {
         deliverables.add(martini_glasse);
         deliverables.add(citron);
         EcomClientLourdAdmin.addCocktail(
-                "Rise sun",
-                "1. Combine all, sake and ginger slice in a shaker filled with ice cubes.\n"
+                "Sunrise",
+                "1. Dans un shaker rempli de glaçons, verser le jus d’orange.\n"
                 + "\n"
-                + "2. Shake vigorously for 8 to 10 seconds.\n"
+                + "2. Agiter vivement de 8 à 10 secondes.\n"
                 + "\n"
-                + "3. Strain into a highball glass using an ice strainer with lemon lime.\n"
+                + "3. Filtrer le contenu du shaker dans un verre highball contenant quelques glaçons à l’aide d’une passoire à glaçons.\n"
                 + "\n"
-                + "4. Garnish with an orange or lemon on a pick.",
-                CocktailFlavorEnum.BITTER,
+                + "4. Verser le sirop de citron-lime.",
+                CocktailFlavorEnum.FRUITY,
                 CocktailPowerEnum.SOFT,
                 "rise_sun.png",
                 deliverables);
@@ -337,12 +351,12 @@ public class EcomClientLourdAdmin {
         deliverables.add(coffee);
         deliverables.add(martini_glasse);
         EcomClientLourdAdmin.addCocktail(
-                "The Irishman",
-                "1. Combine the Irish cream liqueur, vodka, chilled coffee and cream in a pitcher and add the ice cubes.\n"
+                "L'Irlandais",
+                "1. Dans un grand pichet contenant des glaçons, verser la vodka, le café refroidi et la crème.\n"
                 + "\n"
-                + "2. Stir with a mixing spoon.\n"
+                + "2. Remuer à l’aide d’une cuillère à mélange.\n"
                 + "\n"
-                + "3. Serve in martini glasses and garnish with the chocolate shavings.",
+                + "3. Verser dans des verres à martini et garnir de copeaux de chocolat.",
                 CocktailFlavorEnum.BITTER,
                 CocktailPowerEnum.MEDIUM,
                 "l_irlandais.png",
@@ -351,15 +365,15 @@ public class EcomClientLourdAdmin {
         deliverables.clear();
         deliverables.add(rum);
         deliverables.add(chocolate);
-        deliverables.add(orange);
+        deliverables.add(grenade);
         deliverables.add(old_fashioned_glasse);
         EcomClientLourdAdmin.addCocktail(
-                "Downhill",
-                "1. In a old-fashioned glass containing a few ices cubes, pour the rum and pomegranate juice.\n"
+                "Descente",
+                "1. Dans un verre old-fashioned contenant quelques glaçons, verser le rhum et le jus de grenade.\n"
                 + "\n"
-                + "2. Top up with the beer, to get a good head of foam.\n"
+                + "2. Allonger avec du chocolat.\n"
                 + "\n"
-                + "3. Garnish with an orange twist.",
+                + "3. Garnir d’un zeste d’orange.",
                 CocktailFlavorEnum.BITTER,
                 CocktailPowerEnum.MEDIUM,
                 "descente.png",
@@ -368,16 +382,15 @@ public class EcomClientLourdAdmin {
         deliverables.clear();
         deliverables.add(citron);
         deliverables.add(orange);
-        deliverables.add(chili);
         deliverables.add(citron_lime);
         deliverables.add(old_fashioned_glasse);
         EcomClientLourdAdmin.addCocktail(
-                "Punch-Chihuahua",
-                "1. Combine all the ingredients in a punch bowl.\n"
+                "Chiwawa Punch",
+                "1. Dans un bol à punch, verser tous les ingrédients.\n"
                 + "\n"
-                + "2. Stir with a mixing spoon.\n"
+                + "2. Remuer à l’aide d’une cuillère à mélange.\n"
                 + "\n"
-                + "3. Serve in old-fashioned glasses containing a few ice cubes and some fruit from the bowl.",
+                + "3. Servir dans des verres old-fashioned contenant quelques glaçons.",
                 CocktailFlavorEnum.FRUITY,
                 CocktailPowerEnum.SOFT,
                 "chiwawa_punch.png",
@@ -389,11 +402,11 @@ public class EcomClientLourdAdmin {
         deliverables.add(chili);
         EcomClientLourdAdmin.addCocktail(
                 "Zombie",
-                "1. Combine ingredients and ice cubes in a shaker.\n"
+                "1. Dans un shaker, verser tous les ingrédients sur des glaçons.\n"
                 + "\n"
-                + "2. Shake vigorously for 8 to 10 seconds.\n"
+                + "2. Agiter vivement pendant 8 à 10 secondes.\n"
                 + "\n"
-                + "3. Strain into a highball glass using an ice strainer.",
+                + "3.  Filtrer au-dessus d'un verre à l’aide d’une passoire à glaçons.",
                 CocktailFlavorEnum.BITTER,
                 CocktailPowerEnum.STRONG,
                 "zombie.png",
@@ -405,49 +418,31 @@ public class EcomClientLourdAdmin {
         deliverables.add(soda);
         EcomClientLourdAdmin.addCocktail(
                 "French kiss",
-                "1. Combine the citrus liqueur and vodka in a shaker filled with ice.\n"
+                "1. Dans un shaker rempli de glaçons, verser la vodka et du sirop de citron-lime.\n"
                 + "\n"
-                + "2. Shake vigorously for 8 to 10 seconds.\n"
+                + "2. Agiter vivement pendant 8 à 10 secondes..\n"
                 + "\n"
-                + "3. Top up with club soda.",
-                CocktailFlavorEnum.BITTER,
+                + "3. Allonger avec le soda club.",
+                CocktailFlavorEnum.FRUITY,
                 CocktailPowerEnum.MEDIUM,
                 "french_kiss.png",
                 deliverables);
-        
+       
         deliverables.clear();
-        deliverables.add(sirop_mentre);
+        deliverables.add(grenade);
         deliverables.add(cocomilk);
         deliverables.add(cream);
-        deliverables.add(citron_lime);
-        EcomClientLourdAdmin.addCocktail(
-                "Slushy",
-                "1. Combine the dry gin, sake and ginger slicCombine all the ingredients, except for the grapefruit slice, in a blender filled with ice cubes.\n"
-                + "\n"
-                + "2. Blend until smooth.\n"
-                + "\n"
-                + "3. Pour into a highball glass.\n"
-                + "\n"
-                + "4. Ganish with a grapefruit slice.",
-                CocktailFlavorEnum.FRUITY,
-                CocktailPowerEnum.SOFT,
-                "tornade_caraibes.png",
-                deliverables);
-        
-        deliverables.clear();
-        deliverables.add(sirop_fraise);
-        deliverables.add(cocomilk);
-        deliverables.add(cream);
-        deliverables.add(fraise);
+        deliverables.add(cerise);
+        deliverables.add(martini_glasse);
         EcomClientLourdAdmin.addCocktail(
                 "Cherry_blossom",
-                "1.  Combine the Irish cream liqueur, almond liqueur and chocolate milk in a shaker filled with ice cubes.\n"
+                "1. Dans un shaker rempli de glaçons, verser la boisson à la crème, la liqueur de grenade et le lait au chocolat.\n"
                 + "\n"
-                + "2. Blend until smooth.\n"
+                + "2. Agiter vivement de 8 à 10 secondes.\n"
                 + "\n"
-                + "3. Add the grenadine.\n"
+                + "3. Filtrer le contenu du shaker dans un verre à martini à l'aide d'une passoire à glaçons.\n"
                 + "\n"
-                + "4. Ganish with a fruit slice.",
+                + "4. Garnir de cerises sur une pique.",
                 CocktailFlavorEnum.FRUITY,
                 CocktailPowerEnum.SOFT,
                 "cherry_blossom.png",
@@ -459,13 +454,13 @@ public class EcomClientLourdAdmin {
         deliverables.add(chocolate);
         EcomClientLourdAdmin.addCocktail(
                 "Don Pedro Africain",
-                "1. Combine all the ingredients in a shaker.\n"
+                "1. Dans un shaker, ajouter tous les ingrédients.\n"
                 + "\n"
-                + "2. Shake vigorously for 8 to 10 seconds.\n"
+                + "2. Agiter vivement de 8 à 10 secondes.\n"
                 + "\n"
-                + "3. Strain into a highball glass.\n"
+                + "3. Verser le contenu du shaker dans un verre highball.\n"
                 + "\n"
-                + "4. Garnish with chocolate syrup.",
+                + "4. Garnir d’un filet de chocolat.",
                 CocktailFlavorEnum.FRUITY,
                 CocktailPowerEnum.SOFT,
                 "don_pedro_africain.png",
@@ -477,31 +472,29 @@ public class EcomClientLourdAdmin {
         deliverables.add(myrtille);
         EcomClientLourdAdmin.addCocktail(
                 "Mistassini",
-                "1. Crush 7 blueberries in a shaker using a muddler.\n"
+                "1. Dans un shaker, ajouter 7 bleuets et les écraser avec un pilon.\n"
                 + "\n"
-                + "2. Fill shaker with ice.\n"
+                + "2. Remplir le shaker de glaçons.\n"
                 + "\n"
-                + "3. Pour in the dry gin, pomegranate juice and cane syrup.\n"
+                + "3. Verser le dry gin, le jus de grenade et le sirop de myrtille.\n"
                 + "\n"
-                + "4. Shake vigorously for 8 to 10 seconds.",
+                + "4. Agiter vivement pendant 8 à 10 secondes.",
                 CocktailFlavorEnum.FRUITY,
                 CocktailPowerEnum.SOFT,
                 "911.png",
                 deliverables);
         
         deliverables.clear();
-        deliverables.add(banana);
+        deliverables.add(banane);
         deliverables.add(cream);
         deliverables.add(sirop_fraise);
         EcomClientLourdAdmin.addCocktail(
                 "Hakuna Banana",
-                "1.  Pour the banana liqueur and maraschino-cherry syrup in a highball glass containing one ice cube.\n"
+                "1. Dans un shaker, ajouter tous les ingrédients.\n"
                 + "\n"
-                + "2. Stir using a mixing spoon.\n"
+                + "2. Secouer énergiquement pendant 8 à 10 secondes.\n"
                 + "\n"
-                + "3. Put aside.\n"
-                + "\n"
-                + "4. Shake vigorously for 8 to 10 seconds.",
+                + "3. Verser le contenu du shaker dans un verre.",
                 CocktailFlavorEnum.FRUITY,
                 CocktailPowerEnum.SOFT,
                 "hakuna_banana.png",
@@ -510,34 +503,36 @@ public class EcomClientLourdAdmin {
         deliverables.clear();
         deliverables.add(brandy);
         deliverables.add(citron_lime);
-        deliverables.add(mentre);
+        deliverables.add(menthe);
         EcomClientLourdAdmin.addCocktail(
                 "Amarante",
-                "1. Combine the armagnac and lime cordial in a highball glass containing a few mint leaves.\n"
+                "1. Dans un verre highball contenant quelques feuilles de menthe, verser le brandy et le cordial à la lime.\n"
                 + "\n"
-                + "2. Using a muddler, gently press the mint leaves to release their flavour.\n"
+                + "2. À l’aide d’un pilon, écraser la menthe pour laisser s’échapper son parfum.\n"
                 + "\n"
-                + "3. Add the ice cubes.\n"
+                + "3. Ajouter les glaçons.\n"
                 + "\n"
-                + "4. Garnish with a mint sprig.",
+                + "4. Allonger avec le soda.",
                 CocktailFlavorEnum.FRUITY,
                 CocktailPowerEnum.MEDIUM,
                 "amarante.png",
                 deliverables);
         
         deliverables.clear();
-        deliverables.add(sirop_mentre);
+        deliverables.add(sirop_menthe);
         deliverables.add(citron_lime);
-        deliverables.add(mentre);
+        deliverables.add(menthe);
+        deliverables.add(citron);
+        deliverables.add(margarita_glasse);
         EcomClientLourdAdmin.addCocktail(
                 "Ungarita",
-                "1. Combine all of the thing.\n"
+                "1. Dans un pichet, mélanger tous les ingrédients, sauf les demi-rondelles de citron..\n"
                 + "\n"
-                + "2. Using a muddler, gently press the mint leaves to release their flavour.\n"
+                + "2. Remuer à l’aide d’une cuillère à mélange.\n"
                 + "\n"
-                + "3. Add the ice cubes.\n"
+                + "3. Verser dans des verres à margarita.\n"
                 + "\n"
-                + "4. Garnish with a mint sprig.",
+                + "4. Garnir chaque verre d’une demi-rondelle de citron.",
                 CocktailFlavorEnum.FRUITY,
                 CocktailPowerEnum.SOFT,
                 "sungarita.png",
@@ -548,15 +543,16 @@ public class EcomClientLourdAdmin {
         deliverables.add(citron_lime);
         deliverables.add(orange);
         deliverables.add(old_fashioned_glasse);
+        deliverables.add(shooter_glasse);
         EcomClientLourdAdmin.addCocktail(
                 "Uppercut",
-                "1. Combine all of the thing.\n"
+                "1. Dans un verre à shooter, verser du sirop de citron-lime et la vodka.\n"
                 + "\n"
-                + "2. Pour orange juice into an old-fashioned glass.\n"
+                + "2. Dans un verre old-fashioned, verser le jus d’orange.\n"
                 + "\n"
-                + "3. Place the shot glass inside the old-fashioned glass.\n"
+                + "3. Déposer le verre à shooter dans le verre old-fashioned.\n"
                 + "\n"
-                + "4. Drink all at once.",
+                + "4. Boire d’un trait.",
                 CocktailFlavorEnum.FRUITY,
                 CocktailPowerEnum.STRONG,
                 "Uppercut.png",
@@ -565,16 +561,16 @@ public class EcomClientLourdAdmin {
         deliverables.clear();
         deliverables.add(gin);
         deliverables.add(sirop_fraise);
-        deliverables.add(mentre);
+        deliverables.add(menthe);
         EcomClientLourdAdmin.addCocktail(
                 "Heaven 77th",
-                "1. Combine all the ingredients, except for the sprig of mint, in a shaker ﬁlled with ice cubes.\n"
+                "1. Dans un shaker rempli de glaçons, ajouter tous les ingrédients, sauf le brin de menthe.\n"
                 + "\n"
-                + "2. Shake vigorously for 8 to 10 seconds.\n"
+                + "2. Agiter vivement de 8 à 10 secondes.\n"
                 + "\n"
-                + "3. Strain into a wine glass using an ice strainer.\n"
+                + "3. Filtrer le contenu du shaker dans un verre à vin à l’aide d’une passoire à glaçons.\n"
                 + "\n"
-                + "4. Garnish with the sprig of mint.",
+                + "4. Garnir d’un brin de menthe.",
                 CocktailFlavorEnum.FRUITY,
                 CocktailPowerEnum.STRONG,
                 "77e_ciel.png",
@@ -585,137 +581,79 @@ public class EcomClientLourdAdmin {
         deliverables.add(soda);
         deliverables.add(citron_lime);
         deliverables.add(lychee);
+        deliverables.add(margarita_glasse);
         EcomClientLourdAdmin.addCocktail(
-                "Litchi Delight",
-                "1. Fill a pitcher half full with ice cubes.\n"
+                "Fantaisies litchi",
+                "1. Dans un pichet, déposer des glaçons jusqu'à la moitié de sa hauteur.\n"
                 + "\n"
-                + "2. Add the fruit.\n"
+                + "2. Ajouter les fruits.\n"
                 + "\n"
-                + "3. Mix all the ingredients except for the granulated sugar.\n"
+                + "3. Mélanger tous les ingrédients sauf le sucre granulé.\n"
                 + "\n"
-                + "4. Frost the rim of five margarita glasses with granulated sugar.\n"
+                + "4. Givrer le rebord de cinq verres à margarita avec le sucre granulé.\n"
                 + "\n"
-                + "5. Pour into the margarita glasses.\n"
+                + "5. Verser dans les verres à margarita.\n"
                 + "\n"
-                + "6. Garnish each glass with a star fruit slice and lychee.",
+                + "6. Garnir chaque verre d'une tranche de carambole ou d'un litchi.",
                 CocktailFlavorEnum.FRUITY,
                 CocktailPowerEnum.STRONG,
                 "fantaisies_litchi.png",
-                deliverables);
-        
-        deliverables.clear();
-        deliverables.add(whisky);
-        deliverables.add(orange);
-        deliverables.add(cerise);
-        deliverables.add(old_fashioned_glasse);
-        EcomClientLourdAdmin.addCocktail(
-                "Old fashioned",
-                "1. Combine the sugar cube, Angostura bitters, orange wedge and lemon zest in an old-fashioned glass, and crush with a muddler.\n"
-                + "\n"
-                + "2. Add some ice cubes.\n"
-                + "\n"
-                + "3. Add the whiskey.\n"
-                + "\n"
-                + "4. Stir with a mixing spoon.\n"
-                + "\n"
-                + "5. Garnish with maraschino cherries.",
-                CocktailFlavorEnum.BITTER,
-                CocktailPowerEnum.STRONG,
-                "Old_fashioned.png",
-                deliverables);
+                deliverables);        
         
         deliverables.clear();
         deliverables.add(gin);
-        deliverables.add(mentre);
-        deliverables.add(citron_lime);
+        deliverables.add(vodka);
+        deliverables.add(menthe);
+        deliverables.add(ananas);
+        deliverables.add(grenade);
         EcomClientLourdAdmin.addCocktail(
                 "Jynx",
-                "1.  Combine the dry gin, vodka and pineapple juice in a highball glass containing a few ice cubes.\n"
+                "1. Dans un verre highball contenant quelques glaçons, verser le dry gin, la vodka et le jus d’ananas.\n"
                 + "\n"
-                + "2. Add pepper.\n"
+                + "2. Ajouter le poivre.\n"
                 + "\n"
-                + "3. Stir using a mixing spoon.\n"
+                + "3. Remuer à l’aide d’une cuillère à mélange.\n"
                 + "\n"
-                + "4. Gently pour the grenadine syrup over the back of a spoon to create a layered cocktail.\n"
+                + "4. Verser lentement la grenadine sur le dos d’une cuillère pour créer un cocktail étagé.\n"
                 + "\n"
-                + "5. Garnish with a pineapple slice and a raspberry on a cocktail pick.",
+                + "5. Garnir d’une tranche d’ananas sur une pique.",
                 CocktailFlavorEnum.FRUITY,
                 CocktailPowerEnum.STRONG,
                 "jynx.png",
                 deliverables);
         
         deliverables.clear();
-        deliverables.add(pamplemousse);
         deliverables.add(citron_lime);
-        deliverables.add(sirop_mentre);
+        deliverables.add(sirop_menthe);
+        deliverables.add(pamplemousse);
+        deliverables.add(margarita_glasse);
         EcomClientLourdAdmin.addCocktail(
                 "Grapefruit Margarita",
-                "1. Frost the rim of a margarita glass using water and salt.\n"
+                "1. Givrer le rebord d’un verre à margarita avec du sel.\n"
                 + "\n"
-                + "2. Combine all the ingredients, except for the grapefruit wedge, in a blender.\n"
+                + "2. Dans un mélangeur électrique, déposer tous les ingrédients, sauf le quartier de pamplemousse.\n"
                 + "\n"
-                + "3. Blend until smooth.\n"
+                + "3. Mélanger jusqu’à ce que le contenu soit homogène.\n"
                 + "\n"
-                + "4. Pour into a margarita glass.\n"
+                + "4. Verser le contenu du mélangeur dans un verre à margarita.\n"
                 + "\n"
-                + "5. Garnish with a grapefruit wedge.",
+                + "5. Garnir d’un quartier de pamplemousse.",
                 CocktailFlavorEnum.FRUITY,
                 CocktailPowerEnum.SOFT,
                 "margarita_pamplemousse.png",
                 deliverables);
         
         deliverables.clear();
-        deliverables.add(coco);
-        deliverables.add(orange);
-        deliverables.add(cerise);
-        EcomClientLourdAdmin.addCocktail(
-                "Africa colada",
-                "1. Combine the sugar cube, Angostura bitters, orange wedge and lemon zest in an old-fashioned glass, and crush with a muddler.\n"
-                + "\n"
-                + "2. Add some ice cubes.\n"
-                + "\n"
-                + "3. Add 25 ml (3/4 oz.) coconut cream.\n"
-                + "\n"
-                + "4. Stir with a mixing spoon.\n"
-                + "\n"
-                + "5. Garnish with maraschino cherries.",
-                CocktailFlavorEnum.FRUITY,
-                CocktailPowerEnum.SOFT,
-                "africa_colada.png",
-                deliverables);
-        
-        deliverables.clear();
-        deliverables.add(coffee);
-        deliverables.add(coco);
-        deliverables.add(cream);
-        deliverables.add(chocolate);
-        EcomClientLourdAdmin.addCocktail(
-                "Café surprise",
-                "1. Add 250 ml (8 oz.) hot strong filter coffee.\n"
-                + "\n"
-                + "2. Add some ice cubes.\n"
-                + "\n"
-                + "3. Add 30 ml (1 oz.) whipped cream.\n"
-                + "\n"
-                + "4. Add 10 small or 2 coco.\n"
-                + "\n"
-                + "5. Hot chocolate mix or cocoa powder.",
-                CocktailFlavorEnum.BITTER,
-                CocktailPowerEnum.STRONG,
-                "cafe_surprise.png",
-                deliverables);
-        
-        deliverables.clear();
         deliverables.add(vodka);
-        deliverables.add(citron);
         deliverables.add(citron_lime);
+        deliverables.add(citron);
         EcomClientLourdAdmin.addCocktail(
                 "Blue Lagoon",
-                "1. Combine all ingredients in a highball glass containing a few ice cubes, except for the lemon slice.\n"
+                "1. Dans un verre highball contenant quelques glaçons, verser tous les ingrédients, sauf la rondelle de citron.\n"
                 + "\n"
-                + "2. Stir using a mixing spoon.\n"
+                + "2. Remuer à l'aide d’une cuillère à mélange.\n"
                 + "\n"
-                + "3.  Garnish with a lemon slice.",
+                + "3. Garnir d'une rondelle de citron.",
                 CocktailFlavorEnum.FRUITY,
                 CocktailPowerEnum.STRONG,
                 "blue_lagoon.png",
@@ -724,18 +662,19 @@ public class EcomClientLourdAdmin {
         deliverables.clear();
         deliverables.add(coffee);
         deliverables.add(whisky);
-        deliverables.add(cream);
+        deliverables.add(creme_fouettee);
+        deliverables.add(toddy_glasse);
         EcomClientLourdAdmin.addCocktail(
                 "Almond Coffee",
-                "1. Frost the rim of a toddy glass with sugar.\n"
+                "1. Tremper le rebord d’un verre toddy dans du chocolat fondu.\n"
                 + "\n"
-                + "2. Combine the Canadian whisky and almond liqueur in the toddy glass.\n"
+                + "2. Dans le verre toddy, verser le whisky.\n"
                 + "\n"
-                + "3.  Top up with hot coffee.\n"
+                + "3. Allonger avec du café.\n"
                 + "\n"
-                + "4. Stir using a mixing spoon.\n"
+                + "4. Remuer à l’aide d’une cuillère à mélange.\n"
                 + "\n"
-                + "5. Garnish with whipped cream and slivered almonds.",
+                + "5. Garnir de crème fouettée.",
                 CocktailFlavorEnum.BITTER,
                 CocktailPowerEnum.SOFT,
                 "cafe_amandine.png",
@@ -746,17 +685,19 @@ public class EcomClientLourdAdmin {
         deliverables.add(sirop_fraise);
         deliverables.add(fraise);
         deliverables.add(chocolate);
+        deliverables.add(creme_fouettee);
+        deliverables.add(toddy_glasse);
         EcomClientLourdAdmin.addCocktail(
                 "Choco-passion",
-                "1. Rim a toddy glass with the melted chocolate.\n"
+                "1. Tremper le rebord d’un verre toddy dans du chocolat fondu.\n"
                 + "\n"
-                + "2. Pour in the hot chocolate.\n"
+                + "2. Verser le chocolat chaud.\n"
                 + "\n"
-                + "3. Add the strawberry cream liqueur.\n"
+                + "3. Ajouter la boisson à la crème et à la fraise.\n"
                 + "\n"
-                + "4. Stir using a mixing spoon.\n"
+                + "4. Remuer à l’aide d’une cuillère à mélange.\n"
                 + "\n"
-                + "5. Garnish with the whipped cream and strawberry.",
+                + "5. Garnir de crème fouettée et d’une fraise.",
                 CocktailFlavorEnum.BITTER,
                 CocktailPowerEnum.SOFT,
                 "choco_passion.png",
@@ -767,55 +708,96 @@ public class EcomClientLourdAdmin {
         deliverables.add(coca);
         CocktailEntity cocktail = EcomClientLourdAdmin.addCocktail(
                 "Whisky Coca",
-                "50% Whisky"
-                + "50% Coca"
-                + "Directement dans un verre.",
+                "1. Dans un verre contenant quelques glaçons, verser tous les ingrédients.\n"
+                + "\n"
+                + "2. Remuer à l'aide d’une cuillère à mélange.",
                 CocktailFlavorEnum.FRUITY,
                 CocktailPowerEnum.SOFT,
                 "whisky_coca.png",
                 deliverables);
         
         deliverables.clear();
-        deliverables.add(coca);
-        deliverables.add(orange);
-        deliverables.add(ombrelle);
+        deliverables.add(coffee);
+        deliverables.add(coco);
+        deliverables.add(cream);
+        deliverables.add(chocolate);
         EcomClientLourdAdmin.addCocktail(
-                "Orange Coca",
-                "Trop dégueulasse pour avoir une recette."
-                + "Fait bien comme tu le sens, avec beaucoup de glaçons !",
-                CocktailFlavorEnum.FRUITY,
+                "Café surprise",
+                "1. Dans un shaker, ajouter tous les ingrédients.\n"
+                + "\n"
+                + "2. Secouer énergiquement pendant 8 à 10 secondes.\n"
+                + "\n"
+                + "3. Verser le contenu du shaker dans un verre.",
+                CocktailFlavorEnum.BITTER,
                 CocktailPowerEnum.SOFT,
-                "coca_orange.png",
+                "cafe_surprise.png",
                 deliverables);
         
         deliverables.clear();
         deliverables.add(whisky);
         deliverables.add(orange);
+        deliverables.add(old_fashioned_glasse);
         EcomClientLourdAdmin.addCocktail(
-                "Whisky Orange",
-                "Pas bien compliqué...\n"
-                + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent arcu nulla, varius non malesuada id, tristique in quam. Vestibulum risus purus, porta non sapien nec, luctus facilisis nunc. Duis sollicitudin convallis venenatis. Mauris at eros vel enim ullamcorper feugiat sed in odio. Praesent leo odio, tristique vel dui eget, laoreet accumsan est. Suspendisse interdum nulla orci, a mollis magna tristique eget. Phasellus metus massa, feugiat sed tristique in, porta sed orci. Integer posuere ligula ante, vel condimentum sapien pretium sed.\n"
+                "Old fashioned",
+                "1. Dans un verre old-fashioned, ajouter le cube de sucre, le jus d’orange, et écraser à l’aide d’un pilon.\n"
                 + "\n"
-                + "Quisque mattis massa et turpis aliquam pellentesque. Suspendisse velit urna, condimentum aliquet vulputate sit amet, sagittis sit amet velit. Maecenas sed posuere urna. Mauris fermentum est massa. Cras ut felis tortor. Donec enim massa, congue sed dictum et, imperdiet quis ante. Pellentesque tristique ipsum quis dolor laoreet euismod. Sed adipiscing nisl a vulputate luctus. Nullam molestie, tellus in eleifend rhoncus, leo sapien facilisis eros, in semper nulla lorem sed velit. Vivamus eget massa ante. Quisque lacinia augue sed nibh varius posuere. Aliquam erat volutpat.\n"
+                + "2. Ajouter quelques glaçons.\n"
                 + "\n"
-                + "Maecenas imperdiet lorem ligula, quis consequat dolor feugiat sed. Sed vitae nisi venenatis, porttitor nulla eget, suscipit libero. Morbi venenatis facilisis facilisis. Phasellus quis sapien nisl. In consequat arcu eu nulla placerat, et sagittis dui eleifend. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent placerat vel enim nec elementum. Phasellus consectetur arcu nulla, quis lacinia sapien malesuada ac. In sit amet gravida ante. Etiam ac tincidunt felis. Phasellus in mauris pretium, cursus risus ac, dignissim ante.\n"
+                + "3. Verser le whiskey.\n"
                 + "\n"
-                + "Nunc ut justo iaculis, malesuada enim et, accumsan sapien. Integer lorem elit, egestas vitae viverra vel, scelerisque at ligula. Sed tincidunt est non ligula suscipit ornare. Maecenas fermentum vulputate massa, tincidunt fringilla sapien rutrum eget. Praesent a tempor quam, a vehicula risus. Fusce sed varius justo, sit amet posuere lorem. Donec molestie lorem ac sem vehicula bibendum.",
-                CocktailFlavorEnum.FRUITY,
-                CocktailPowerEnum.SOFT,
-                "whisky_orange.png",
+                + "4. Remuer à l’aide d’une cuillère à mélange.\n"
+                + "\n"
+                + "5. Profitez-vous!",
+                CocktailFlavorEnum.BITTER,
+                CocktailPowerEnum.STRONG,
+                "Old_fashioned.png",
                 deliverables);
         
         deliverables.clear();
         deliverables.add(vodka);
-        deliverables.add(coca);
-        deliverables.add(citron);
+        deliverables.add(coffee);
         EcomClientLourdAdmin.addCocktail(
-                "Vodka Coca",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam a diam sit amet risus porttitor aliquam ut in est. Morbi ut fermentum ligula, eget sodales risus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent sit amet blandit velit, nec interdum ipsum. Donec cursus iaculis tortor ut posuere. Curabitur tempor egestas ipsum ut consectetur. Integer ligula orci, vulputate non leo ac, aliquet bibendum ipsum. Vivamus laoreet semper nisl vestibulum pellentesque. Duis volutpat bibendum ipsum ut rhoncus. Cras et nunc augue. Nulla tincidunt aliquam dapibus. Nullam sit amet metus quis nisi vehicula aliquam. Sed suscipit dignissim fringilla. Aliquam iaculis elit eu mauris pharetra, in viverra augue aliquet. Morbi dictum nulla in pellentesque interdum.\n",
+                "Black russian",
+                "1. Dans un verre contenant quelques glaçons, verser la vodka et la liqueur de café.\n"
+                + "\n"
+                + "2. Remuer à l'aide d'une cuillère à mélange.",
+                CocktailFlavorEnum.BITTER,
+                CocktailPowerEnum.STRONG,
+                "black_russian.png",
+                deliverables);
+        
+        deliverables.clear();
+        deliverables.add(rum);
+        deliverables.add(icetea);
+        deliverables.add(limonade);
+        EcomClientLourdAdmin.addCocktail(
+                "Le thé du jardin",
+                "1. Dans un verre highball contenant quelques glaçons, verser le rhum, le thé glacé et la limonade.\n"
+                + "\n"
+                + "2. Remuer à l'aide d'une cuillère à mélange.",
+                CocktailFlavorEnum.BITTER,
+                CocktailPowerEnum.SOFT,
+                "the_jardin.png",
+                deliverables);
+        
+        deliverables.clear();
+        deliverables.add(coco);
+        deliverables.add(orange);
+        deliverables.add(ananas);
+        EcomClientLourdAdmin.addCocktail(
+                "Africa colada",
+                "1. Givrer le rebord d’un verre highball avec de la cannelle.\n"
+                + "\n"
+                + "2. Dans un shaker rempli de glaçons, ajouter tous les ingrédients, sauf la tranche d’ananas.\n"
+                + "\n"
+                + "3. Agiter vivement de 8 à 10 secondes.\n"
+                + "\n"
+                + "4. Filtrer le contenu du shaker dans le verre contenant quelques glaçons à l’aide d’une passoire à glaçons.\n"
+                + "\n"
+                + "5. Garnir d’une tranche d’ananas.",
                 CocktailFlavorEnum.FRUITY,
                 CocktailPowerEnum.SOFT,
-                "vodka_coca.png",
+                "africa_colada.png",
                 deliverables);
         
         /* Add a client */
@@ -835,10 +817,15 @@ public class EcomClientLourdAdmin {
         /* Add a new cocktail proposed by a client */
         deliverables.clear();
         deliverables.add(gin);
-        deliverables.add(ombrelle);
+        deliverables.add(soda);
+        deliverables.add(menthe);
         EcomClientLourdAdmin.addCocktail(
-                "Gin Sec",
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tristique nullam.",
+                "Gin tonic",
+                "1. Dans un verre contenant quelques glaçons, verser le gin.\n"
+                + "\n"
+                + "2. Allonger avec le soda tonique.\n"
+                + "\n"
+                + "3. Garnir de feuilles de menthe.",
                 CocktailFlavorEnum.BITTER,
                 CocktailPowerEnum.STRONG,
                 "gin_sec.png",
