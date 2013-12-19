@@ -167,7 +167,7 @@ public class beveragePanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 255, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -175,7 +175,6 @@ public class beveragePanel extends javax.swing.JPanel {
 
         jSplitPane1.setRightComponent(jScrollPane1);
 
-        jTable2.setAutoCreateRowSorter(true);
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -223,7 +222,7 @@ public class beveragePanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -254,7 +253,7 @@ public class beveragePanel extends javax.swing.JPanel {
         cancelButton.setEnabled(false);
         deleteButton.setEnabled(false);
 
-        beverageID = null;
+        currentBeverage = new BeverageEntity();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void validateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validateButtonActionPerformed
@@ -269,7 +268,7 @@ public class beveragePanel extends javax.swing.JPanel {
         String dialogContent;
 
         /* If we are creating a new beverage */
-        if (beverageID == null) {
+        if (currentBeverage.getID() == null) {
             // Add new beverage to database
             entity = TchinTchinAdminFrame.adminFacade.addBeverage(entity);
             // Update the table display
@@ -278,8 +277,6 @@ public class beveragePanel extends javax.swing.JPanel {
             dialogTitle = "Création d'une boisson";
             dialogContent = "La boisson a été créée avec succès !";
         } /* We are updating an already present beverage */ else {
-            entity.setID(beverageID);
-
             // Update beverage in database
             TchinTchinAdminFrame.adminFacade.updateBeverage(entity);
             // Update beverage in table
@@ -316,26 +313,18 @@ public class beveragePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jTable2KeyTyped
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        BeverageEntity entity = new BeverageEntity();
-        entity.setName(beverageNameField.getText());
-        entity.setPrice((Float) beveragePriceSpinner.getValue());
-        entity.setQuantity((Integer) beverageStockSpinner.getValue());
-        entity.setCapacity((Integer) beverageVolumeSpinner.getValue());
-        entity.setAlcoholicDegree((Integer) beverageAlcoholicSpinner.getValue());
-
-        entity.setID(beverageID);
-
         if (JOptionPane.showConfirmDialog(this,
                 "Êtes-vous sûr de vouloir supprimer cette boisson :\n"
-                + entity.getName(),
+                + currentBeverage.getName(),
                 "Suppression d'une boisson",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
 
-            TchinTchinAdminFrame.adminFacade.removeBeverage(entity);
+            TchinTchinAdminFrame.adminFacade.removeBeverage(currentBeverage);
             int removedRow = jTable2.getSelectedRow();
             ((DefaultTableModel) jTable2.getModel()).fireTableRowsDeleted(removedRow, removedRow);
             ((DefaultTableModel) jTable2.getModel()).removeRow(removedRow);
+
 
             JOptionPane.showMessageDialog(this,
                     "Boisson supprimée !",
@@ -371,7 +360,7 @@ public class beveragePanel extends javax.swing.JPanel {
     private javax.swing.JTable jTable2;
     private javax.swing.JButton validateButton;
     // End of variables declaration//GEN-END:variables
-    private Long beverageID;
+    private BeverageEntity currentBeverage;
 
     private void addBeverageToTable(BeverageEntity entity) {
         DefaultTableModel tableModel = (DefaultTableModel) jTable2.getModel();
@@ -387,21 +376,25 @@ public class beveragePanel extends javax.swing.JPanel {
     }
 
     private void jTable2SelectionChanged() {
+        cancelButtonActionPerformed(null);
         int i = jTable2.getSelectedRow();
         if (i >= 0) {
-            TableModel model = jTable2.getModel();
-            beverageNameField.setText((String) model.getValueAt(i, 1));
-            beveragePriceSpinner.setValue((Float) model.getValueAt(i, 2));
-            beverageStockSpinner.setValue((Integer) model.getValueAt(i, 3));
-            beverageVolumeSpinner.setValue((Integer) model.getValueAt(i, 4));
-            beverageAlcoholicSpinner.setValue((Integer) model.getValueAt(i, 5));
+            //TableModel model = jTable2.getModel();
+            currentBeverage.setID((Long) jTable2.getValueAt(i, 0));
+            currentBeverage = TchinTchinAdminFrame.adminFacade.getBeverage(currentBeverage.getID());
+            System.out.println(currentBeverage);
+
+            /* Display beverage infos */
+            beverageNameField.setText(currentBeverage.getName());
+            beveragePriceSpinner.setValue(currentBeverage.getPrice());
+            beverageStockSpinner.setValue(currentBeverage.getQuantity());
+            beverageVolumeSpinner.setValue(currentBeverage.getCapacity());
+            beverageAlcoholicSpinner.setValue(currentBeverage.getAlcoholicDegree());
 
             validateButton.setText("Modifier");
             validateButton.setEnabled(true);
             cancelButton.setEnabled(true);
             deleteButton.setEnabled(true);
-
-            beverageID = (Long) model.getValueAt(i, 0);
         }
     }
 }

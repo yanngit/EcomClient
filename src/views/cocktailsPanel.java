@@ -95,7 +95,6 @@ public class cocktailsPanel extends javax.swing.JPanel {
             }
         });
 
-        cocktailTable.setAutoCreateRowSorter(true);
         cocktailTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -670,17 +669,6 @@ public class cocktailsPanel extends javax.swing.JPanel {
         currentCocktail.setFlavor((CocktailFlavorEnum) cocktailFlavorCombo.getSelectedItem());
         currentCocktail.setPower((CocktailPowerEnum) cocktailPowerCombo.getSelectedItem());
         currentCocktail.setRecipe(cocktailRecipeText.getText());
-
-        /* Create list of deliverables */
-        /* List of deliverables is already defined */
-        /*List<Deliverable> deliverables = new ArrayList<>();
-         List<List> cocktailBevVector = ((DefaultTableModel) cocktailBevList.getModel()).getDataVector();
-         Iterator<List> it = cocktailBevVector.iterator();
-         while (it.hasNext()) {
-         List value = it.next();
-         deliverables.add(TchinTchinAdminFrame.adminFacade.getBeverage((Long) value.get(0)));
-         }
-         currentCocktail.setDeliverables(deliverables);*/
 
         String dialogTitle;
         String dialogContent;
