@@ -269,7 +269,6 @@ public class cocktailsPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         beveragesPanel.add(jLabel11, gridBagConstraints);
 
-        avalaibleBevList.setAutoCreateRowSorter(true);
         avalaibleBevList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -341,7 +340,6 @@ public class cocktailsPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         beveragesPanel.add(jLabel10, gridBagConstraints);
 
-        cocktailBevList.setAutoCreateRowSorter(true);
         cocktailBevList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -402,7 +400,6 @@ public class cocktailsPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         decoPanel.add(jLabel6, gridBagConstraints);
 
-        avalaibleDecoList.setAutoCreateRowSorter(true);
         avalaibleDecoList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -464,7 +461,6 @@ public class cocktailsPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         decoPanel.add(jLabel9, gridBagConstraints);
 
-        cocktailDecoList.setAutoCreateRowSorter(true);
         cocktailDecoList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
